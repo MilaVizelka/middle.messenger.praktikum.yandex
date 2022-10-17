@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "handlebars": "^4.7.7",
+    "parcel-bundler": "^1.12.5",
+    "parcel-plugin-handlebars": "^0.4.4"
+  },
+  "scripts": {
+    "dev": "parcel index.hbs",
+    "build": "parcel build index.hbs"
+  },
+  "name": "middle.messenger.praktikum.yandex",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/MilaVizelka/middle.messenger.praktikum.yandex.git",
+  "author": "Mila Vizelka <vimila@inbox.ru>",
+  "license": "MIT"
+}
