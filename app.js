@@ -4,13 +4,16 @@ import { fileURLToPath } from "url";
 
 const app = express();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
 
 const PORT = 3000;
 app.set("view engine", "pug");
 
-app.use(express.static(__dirname + "/dist"));
+const FOLDER = `${process.cwd()}/dist`;
+app.use(express.static(FOLDER));
+
+// app.use(express.static(__dirname + "/dist"));
 
 // app.get("/", (req, res) => {
 //   res.render("index", { title: "Main page" });
@@ -27,4 +30,9 @@ app.use(express.static(__dirname + "/dist"));
 // app.get("/error", (req, res) => {
 //   res.render("error-page", { title: "Error page" });
 // });
-app.listen(PORT, console.log("success"));
+// app.listen(PORT, console.log("success"));
+const port = 3000;
+const hostname = 'localhost';
+app.listen(port, hostname, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});
