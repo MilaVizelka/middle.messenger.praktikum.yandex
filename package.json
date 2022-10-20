@@ -1,7 +1,7 @@
 {
   "name": "chat",
   "main": "app.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "serve": "npx nodemon app.js",
     "start": "node app.js",
