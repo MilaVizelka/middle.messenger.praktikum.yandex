@@ -1,17 +1,17 @@
 const express = require("express");
 const path = require("path");
-const fileURLToPath = require("url");
 
 const PORT = 3000;
 const app = express();
 
- 
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
-
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
-app.use(express.static(path.join(__dirname, '/dist')));
+app.get("/", (req, res) => {
+  res.render("index", { title: "Home" });
+});
+
+// app.use(express.static(path.join(__dirname, '/dist')));
 
 // app.get("/", (req, res) => {
 //   res.render("index", { title: "Main page" });
