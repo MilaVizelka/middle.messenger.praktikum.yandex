@@ -2,8 +2,7 @@
   "name": "chat",
   "main": "app.js",
   "type": "commonjs",
-  "scripts": {
-    "preinstall": "npx npm-force-resolutions",
+  "scripts": {    
     "serve": "npx nodemon app.js",
     "start": "node app.js",
     "build": "parcel build views/index.pug"
