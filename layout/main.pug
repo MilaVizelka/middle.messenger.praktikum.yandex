@@ -4,8 +4,8 @@ doctype html
 html(lang="en")
   head
     title= pageTitle
-    style
-      include ../style.scss
-  body
-    include ../layout/header
+    link(rel='stylesheet', href='../static/style.scss')
+  body 
+    include ../layout/header   
     block content
+      
