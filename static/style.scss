@@ -1,13 +1,144 @@
+@mixin flex {
+  display: flex;
+  align-items: center;
+}
+
 body,
 html {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   font-family: "Arial";
   margin: 0px;
+  overflow: hidden;
+  font-size: 14px;
 }
-div {
-  background: red;
-  p {
-    display: flex;
+ul {
+  padding: 0px;
+}
+li {
+  list-style: none;
+}
+.hide {
+  display: none;
+}
+header {
+  padding: 10px;
+  height: 70px;
+  @include flex;
+  justify-content: space-between;
+  .wrapperLogo,
+  .wrapperExitAction {
+    @include flex;
+  }
+  .logo {
+    margin-left: 30px;
+  }
+  .icon-search {
+    margin-left: 50px;
+  }
+  .search {
+    margin-left: 20px;
+    border: none;
+    &:focus-visible {
+      outline: none;
+      border: none;
+    }
+  }
+  .notification {
+    margin-right: 30px;
+  }
+  .user {
+    margin-right: 10px;
+  }
+  .arrow-down {
+    background: none;
+    border: none;
+  }
+  .exit {
+    width: 26px;
+    height: 26px;
+    background: #d4dffa;
+    border-radius: 50px;
+    @include flex;
+    margin: 0px 10px 0px 20px;
+    justify-content: center;
+    cursor: pointer;
+  }
+}
+.container {
+  @include flex;
+  background: #edeef0;
+  height: 90vh;
+  padding: 24px;
+  aside {
+    width: 420px;
+    height: 83vh;
+    background: #ffffff;
+    border-radius: 10px;
+    h2 {
+      margin: 0;
+      padding: 15px;
+    }
+  }
+  .users-blocks {
+    padding: 15px;
+    border-bottom: 1px solid #eae8e8;
+
+    .wrapperUsersName,
+    .wrapperMessageSnippet {
+      justify-content: space-between;
+      height: 37px;
+      @include flex;
+      span {
+        font-weight: 700;
+        font-size: 16px;
+      }
+      .userName,
+      .time {
+        @include flex;
+      }
+      .userName {
+        img {
+          margin-right: 10px;
+        }
+      }
+      .time {
+        color: #938383;
+      }
+      .snippet {
+        color: #a0a0a0;
+        font-size: 15px;
+      }
+      .count {
+        background: #ec2e67;
+        width: 23px;
+        height: 23px;
+        border-radius: 50px;
+        @include flex;
+        justify-content: center;
+        color: #ffffff;
+      }
+    }
+  }
+  .active {
+    background: #D9DEEB;
+    border-right: 3px solid#4680D9;
+  }
+  .chat {
+    width: 100%;
+    height: 83vh;
+    background: #e0e1e6;
+    border-radius: 10px;
+    margin-left: 30px;
+    .chatHeader {
+      background: #ffffff;
+      height: 60px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      @include flex;
+      padding: 0px 20px;
+      font-weight: 700;
+      font-size: 16px;
+    }
   }
 }

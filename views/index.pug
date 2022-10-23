@@ -1,12 +1,39 @@
 extends ../layout/main
 
 block variables 
-  - var pageTitle = 'Chat'
-  - var user = '../assets/user.svg'
+  - let pageTitle = 'Chat'
+  - let user = '../assets/user.svg'
+  - let users = [{active: false, avatar: "../assets/avatar-ivan.svg", name: "Ivan Ivanovsky", messageSentTime: "4m", messageSnippet: "What about Metallica?", messageCount: 3}, {active: true, avatar: "../assets/avatar-ivan.svg", name: "Yan", messageSentTime: "23m", messageSnippet: "I like Alan Walker", messageCount: 0}, {active: false, avatar: "../assets/avatar-ivan.svg", name: "Misha Collins", messageSentTime: "44m", messageSnippet: "JBL Link Music Yandex Black", messageCount: 1}];
 
 block content
-  div(class='container') ddd 
-    p jjjjjjjj
-      
-   
-    
+  div.container
+    aside
+      h2 Music
+      ul.users-list 
+        each i in users
+          li(class=(i.active ? "active users-blocks" : "users-blocks"))
+            div.wrapperUsersName
+              div.userName 
+                img(src=i.avatar)
+                span=i.name
+              div.time 
+                p=i.messageSentTime
+            div.wrapperMessageSnippet
+              div.snippet
+                p=i.messageSnippet                
+              div(class=(i.messageCount !== 0 ? 'count' :  'hide'))
+                p=i.messageCount
+    div.chat
+      each i in users
+        if i.active  
+          .chatHeader
+            img(src=i.avatar)
+            span=i.name
+          .chatBody
+
+
+
+
+
+
+
