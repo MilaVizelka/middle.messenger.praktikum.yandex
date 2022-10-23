@@ -1,0 +1,71 @@
+@mixin flex {
+  display: flex;
+  align-items: center;
+}
+.wrapperSignIn {
+  height: calc(100% - 100px);
+  background: #101e2b;
+  padding: 50px;
+  .wrapperForm {
+    @include flex;
+    flex-direction: column;
+    height: 80%;
+    justify-content: center;
+  }
+  h1 {
+    font-size: 36px;
+    line-height: 42px;
+    font-weight: 400;
+    color: #ffffff;
+  }
+  .formBlock {
+    min-width: 566px;
+    height: max-content;
+    background: #fefdfd;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    @include flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px 0px;
+  }
+  .decor-element {
+    width: 567px;
+  }
+  .auth {
+    width: 382px;
+    height: 50px;
+    background: #f0efef;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 5px;
+  }
+  .signInSubmitButton {
+    width: 382px;
+    height: 60px;
+    background: #218fcd;
+    border-radius: 4px;
+    border: none;
+    margin-top: 10px;
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    @include flex;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+  .signUpLink {
+    @include flex;
+    color: #ffffff;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 10px;
+    a {
+      color: #ffffff;
+    }
+  }
+}

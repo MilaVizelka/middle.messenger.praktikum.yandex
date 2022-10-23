@@ -1,7 +1,21 @@
-extends ../layout/main
+extends ../layout/no-header
 
 block variables 
   - var pageTitle = 'Sign up'
 
 block content
-  h1 Hello reg!
+  include ../layout/wrapper-auth
+    .wrapperForm
+      h1 Let’s get started!
+      img(src='../assets/decor-element.svg' class="decor-element")
+      form.formBlock
+        input(type='text' name='first-name' class='auth' placeholder='first name' required)
+        input(type='text' name='last-name' class='auth' placeholder='last name' required)   
+        input(type='email' name='e-mail' class='auth' placeholder='e-mail' required) 
+        input(type='password' name='password' class='auth' placeholder='password' required)      
+        button(class="signInSubmitButton" type="submit" formaction="index.pug")
+          p Create account
+      div(class="signUpLink" ) 
+        p or 
+        a(class="signUp" href="sign-in.pug" title="Sign up") Sign in
+
