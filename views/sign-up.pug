@@ -1,7 +1,7 @@
 extends ../layout/no-header
 
 block variables 
-  - var pageTitle = 'Sign up'
+  - let pageTitle = 'Sign up'
 
 block content
   include ../layout/wrapper-auth
@@ -17,5 +17,5 @@ block content
           p Create account
       div(class="signUpLink" ) 
         p or 
-        a(class="signUp" href="sign-in.pug" title="Sign up") Sign in
+        a(class="signUp" href="error-404.pug" title="Sign up") Sign in
 

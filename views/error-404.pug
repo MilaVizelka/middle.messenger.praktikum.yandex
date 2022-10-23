@@ -1,7 +1,9 @@
-extends ../layout/main
+extends ../layout/no-header
 
 block variables 
-  - var pageTitle = 'Error 404'
+  - let pageTitle = 'Error404'
 
 block content
-  h1 Error!
+  div.wrapperError
+    img(src='../assets/error-404.svg')
+    a(href='index.pug') Назад к чатам

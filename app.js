@@ -18,5 +18,8 @@ app.get("/", (req, res) => {
 app.get("/settings", (req, res) => {
   res.render("settings", { title: "Settings" });
 });
+app.get("/error404", (req, res) => {
+  res.render("error-404", { title: "Settings" });
+});
 
 app.listen(PORT, console.log("success"));
