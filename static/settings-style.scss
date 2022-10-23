@@ -1,0 +1,68 @@
+@import "static/_flex-mixin.scss";
+@import "static/_button-exit-style.scss";
+
+.transformArrow {
+  transform: rotate(180deg);
+}
+.exit {
+  margin-top: 20px;
+}
+.wrapperSettings {
+  padding: 20px;
+  @include flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: calc(100% - 100px);
+  p {
+    font-size: 16px;
+    line-height: 19px;
+    color: #a5a7a9;
+  }
+  .wrapperAvatar {
+    @include flex;
+    gap: 5px;
+    align-items: flex-end;
+    cursor: pointer;
+    margin-bottom: 40px;
+    p {
+      align-self: flex-end;
+      margin: 0;
+    }
+  }
+  .userPhoto {
+    width: 149px;
+    height: 155px;
+  }
+  .label {
+    width: 500px;
+  }
+  .wraperInput {
+    @include flex;
+    width: 715px;
+    height: 52px;
+    border-bottom: 1px solid #cbcbcb;
+    input {
+      border: none;
+      color: #999999;
+    }
+  }
+  .settingsSubmitButton {
+    width: 382px;
+    height: 60px;
+    background: #218fcd;
+    border-radius: 4px;
+    border: none;
+    margin-top: 10px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    @include flex;
+    justify-content: center;
+    cursor: pointer;
+    margin-top: 40px;
+    p {
+      color: #ffffff;
+    }
+  }
+}

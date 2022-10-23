@@ -15,5 +15,8 @@ app.set("view engine", "pug");
 app.get("/", (req, res) => {
   res.render("index", { title: "Home" });
 });
+app.get("/settings", (req, res) => {
+  res.render("settings", { title: "Settings" });
+});
 
 app.listen(PORT, console.log("success"));

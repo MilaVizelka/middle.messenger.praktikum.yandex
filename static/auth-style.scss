@@ -1,7 +1,5 @@
-@mixin flex {
-  display: flex;
-  align-items: center;
-}
+@import "static/_flex-mixin.scss";
+
 .wrapperSignIn {
   height: calc(100% - 100px);
   background: #101e2b;
