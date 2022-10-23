@@ -3,7 +3,8 @@ extends ../layout/main
 block variables 
   - let pageTitle = 'Chat'
   - let user = '../assets/user.svg'
-  - let users = [{active: false, avatar: "../assets/avatar-ivan.svg", name: "Ivan Ivanovsky", messageSentTime: "4m", messageSnippet: "What about Metallica?", messageCount: 3}, {active: true, avatar: "../assets/avatar-ivan.svg", name: "Yan", messageSentTime: "23m", messageSnippet: "I like Alan Walker", messageCount: 0}, {active: false, avatar: "../assets/avatar-ivan.svg", name: "Misha Collins", messageSentTime: "44m", messageSnippet: "JBL Link Music Yandex Black", messageCount: 1}];
+  - let users = [{active: false, avatar: "../assets/avatar-ivan.svg", name: "Ivan Ivanovsky", messageSentTime: "4m", messageSnippet: "What about Metallica?", messageCount: 3}, {active: true, avatar: "../assets/avatar-ivan.svg", name: "Yan", messageSentTime: "23m", messageSnippet: "I like Natasha Koroleva, sorry)", messageCount: 0}, {active: false, avatar: "../assets/avatar-ivan.svg", name: "Misha Collins", messageSentTime: "44m", messageSnippet: "JBL Link Music Yandex Black", messageCount: 1}];
+  - let messages = [{author: false, name: "Yan",  avatar: "../assets/avatar-ivan.svg", message: "hi Milana!))"}, {author: true, name: "Milana",  avatar: "../assets/user.svg", message: "Yan, Metallica is an American heavy metal band. The band was formed in 1981 in Los Angeles by vocalist/guitarist James Hetfield and drummer Lars Ulrich and has been based in San Francisco for most of its career.[1][2] The band's fast tempos, instrumentals and aggressive musicianship made them one of the founding bands of thrash metal, alongside Megadeth"}, {author: false, name: "Yan",  avatar: "../assets/avatar-ivan.svg", message: "I like Natasha Koroleva, sorry)"}]
 
 block content
   div.container
@@ -29,7 +30,14 @@ block content
           .chatHeader
             img(src=i.avatar)
             span=i.name
-          .chatBody
+      .chatBody
+        each i in messages         
+          .chatConteiners(class=(i.author ? 'authorMessage' : 'entryMessage'))
+            p=i.message
+        include ../layout/message-field
+
+
+
 
 
 

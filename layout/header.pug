@@ -4,12 +4,13 @@ header
     img(src='../assets/search.svg' class="icon-search")
     input(type='text' name='search' class='search' placeholder='Search for people')
   div.wrapperExitAction
-    img(src='../assets/notification.svg' class='notification')
+    div.notification
+      img(src='../assets/notification.svg')
     img(src=user class='user')
     button.arrow-down 
       img(src='../assets/arrow-down.svg')
-    div.exit 
+    a(class="exit" href="sign-in.pug" title="exit")
       img(src='../assets/arrow-exit.svg')
-    
-      
+
+
 
