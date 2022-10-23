@@ -3,10 +3,8 @@
   "main": "app.js",
   "type": "commonjs",
   "scripts": {
-    "preinstall": "npx npm-force-resolutions",
-    "serve": "npx nodemon app.js",
-    "start": "parcel views/index.pug",
-    "build": "parcel build views/index.pug -d dist --public-url ./"
+    "start": "node app.js",
+    "build": "parcel build views/index.pug"
   },
   "engines": {
     "node": "18.10.0"

@@ -64,6 +64,7 @@ header {
   @include flex;
   background: #0a151f;
   padding: 24px;
+  position: relative;
   aside {
     width: 420px;
     height: 83vh;
