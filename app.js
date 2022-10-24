@@ -12,4 +12,4 @@ app.get("/", (req, res) => {
   res.render("index.html", { title: "Home" });
 });
 
-app.listen(PORT);
+app.listen(process.env.PORT || PORT, () => console.log("success"));
