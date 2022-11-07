@@ -1,0 +1,23 @@
+extends ../layout/no-header
+
+block variables 
+  - let pageTitle = 'Sign in'
+
+block content
+  include ../layout/wrapper-auth
+    .wrapperForm
+      h1 Log in
+      img(src='../assets/decor-element.svg' class="decor-element"  alt="decor")
+      form.formBlock
+        input(type='text' name='login' class='auth' placeholder='login' required)
+        input(type='password' name='password' class='auth' placeholder='password' required)        
+        button(class="signInSubmitButton" type="submit" formAction="index.html")
+          p Enter
+          img(src='../assets/rocket.svg'  alt="enter")
+      div(class="signUpLink" ) 
+        p or 
+        a(class="signUp" href="sign-up.pug" title="Sign up") Sign up
+        
+      
+      
+    

@@ -1,0 +1,9 @@
+extends ../layout/no-header
+
+block variables 
+  - let pageTitle = 'Error404'
+
+block content
+  div.wrapperError
+    img(src='../assets/error-404.svg'  alt="error")
+    a(href='index.pug') Назад к чатам
