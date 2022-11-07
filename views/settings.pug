@@ -6,13 +6,13 @@ block variables
 
 block content
   a(class="exit" href="sign-in.pug" title="chat")
-    img(src='../assets/arrow-exit.svg' class="transformArrow")
+    img(src='../assets/arrow-exit.svg' class="transformArrow"  alt="exit")
   div.wrapperSettings
     div.wrapperAvatar
-      img(src='../assets/user.svg' class="userPhoto")
-      img(src='../assets/add-photo.svg')
+      img(src='../assets/user.svg' class="userPhoto"  alt="user")
+      img(src='../assets/add-photo.svg'  alt="add")
       p avatar
-    div.regForm
+    form.regForm
       each i in user
         div.wraperInput
           div.label First name
@@ -32,8 +32,8 @@ block content
         div.wraperInput
           div.label New password
           input(type='text' name='new-password')
-    button(class="settingsSubmitButton" type="submit" formaction="index.pug")
-          p Save
+      button(class="settingsSubmitButton" type="submit" formaction="index.pug")
+        p Save
 
 
       

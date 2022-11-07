@@ -15,7 +15,7 @@ block content
           li(class=(i.active ? "active users-blocks" : "users-blocks"))
             div.wrapperUsersName
               div.userName 
-                img(src=i.avatar)
+                img(src=i.avatar  alt="avatar")
                 span=i.name
               div.time 
                 p=i.messageSentTime
@@ -28,7 +28,7 @@ block content
       each i in users
         if i.active  
           .chatHeader
-            img(src=i.avatar)
+            img(src=i.avatar  alt="avatar")
             span=i.name
       .chatBody
         each i in messages         
