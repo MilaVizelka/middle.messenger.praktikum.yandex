@@ -6,6 +6,7 @@ import {Button} from "../../components/button";
 import {Input} from "../../components/input";
 import {InputProps, ProjectLinksEnum} from "../../models/project.model.ts";
 
+
 const signUpFieldList =
     [
         {
