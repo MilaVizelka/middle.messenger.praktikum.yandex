@@ -1,4 +1,4 @@
-import './style.sass'
+import './styles/style.sass'
 import {NotFoundPage} from "./pages/error/not-found";
 import {ServerErrorPage} from "./pages/error/server-error";
 import {SignInPage} from "./pages/sign-in";
