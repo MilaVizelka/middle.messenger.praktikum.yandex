@@ -14,8 +14,8 @@
   },
   "lint-staged": {
     "*.ts": "npx tsc --noEmit",
-    "*.{js,jsx,ts,tsx}": "npx eslint",
-    "*.{sass}": "npx stylelint"
+    "*.{js, ts}": "npx eslint",
+    "*.{sass}": "npx stylelint '**/*.sass'"
   },
   "dependencies": {
     "eslint-config-airbnb-base": "^15.0.0",
