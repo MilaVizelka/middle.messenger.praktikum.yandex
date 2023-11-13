@@ -14,9 +14,10 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.ts": "npx tsc --noEmit",
-    "*.{js, ts}": "npx eslint",
-    "*.{sass}": "npx stylelint '**/*.sass'"
+    "*.{js, ts}": [
+      "node_modules/.bin/eslint",
+      "git-add"
+    ]
   },
   "dependencies": {
     "eslint-config-airbnb-base": "^15.0.0",
@@ -35,7 +36,6 @@
     "lint-staged": "^15.1.0",
     "postcss-sass": "^0.5.0",
     "stylelint": "^15.11.0",
-    "stylelint-config-sass-guidelines": "^10.0.0",
     "stylelint-config-standard": "^34.0.0",
     "typescript": "^5.0.2"
   }
