@@ -15,11 +15,11 @@ export class Block<P extends  Record<string, any> = any> {
     public children: Record<string, Block>;
     private eventBus: () => EventBus;
     private _element: HTMLElement | null = null;
-    private _meta: {tagName: string; props: P}
+    private readonly _meta: {tagName: string; props: P}
     
     /** JSDoc
      * @param {string} tagName
-     * @param {Object} props
+     * @param propsWithChildren
      *
      * @returns {void}
      */
@@ -69,7 +69,7 @@ export class Block<P extends  Record<string, any> = any> {
     }
     
     _registerEvents(eventBus: EventBus) {
-        eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
+        eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
         eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
@@ -82,13 +82,13 @@ export class Block<P extends  Record<string, any> = any> {
     
     private _init() {
         this._createResources();
-        
-        this.init();
-        
+        this.init()
         this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
     
-    init() {}
+    protected init() {}
+    
+ 
     
     _componentDidMount() {
         this.componentDidMount();
@@ -108,6 +108,7 @@ export class Block<P extends  Record<string, any> = any> {
     }
     
     protected componentDidUpdate(oldProps: P, newProps: P) {
+        console.log(oldProps, newProps)
         return true;
         
     }
@@ -120,7 +121,7 @@ export class Block<P extends  Record<string, any> = any> {
         Object.assign(this.props, nextProps)
     }
     
-    getElement() {
+    get element() {
         return this._element;
     }
     
@@ -154,9 +155,9 @@ export class Block<P extends  Record<string, any> = any> {
                 return
             }
             
-            component.getElement()?.append(...Array.from(stub.childNodes));
+            component.element!.append(...Array.from(stub.childNodes));
             
-            stub.replaceWith(component.getElement()!);
+            stub.replaceWith(component.element!);
         });
         
         return temp.content
@@ -194,11 +195,11 @@ export class Block<P extends  Record<string, any> = any> {
     }
     
     show() {
-        this.getElement()!.style.display = "block";
+        this.element!.style.display = "block";
     }
     
     hide() {
-        this.getElement()!.style.display = "none";
+        this.element!.style.display = "none";
     }
     
 }
