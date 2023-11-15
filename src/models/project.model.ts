@@ -9,6 +9,13 @@ export type MenuProps = {
     label?: string;
 }
 
+export type ApiOptionsType = {
+    method: string,
+    data: any,
+    headers: any,
+    timeout: number
+}
+
 export type LinkProps = {
     to: string;
     content?: string;
