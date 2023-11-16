@@ -1,9 +1,14 @@
-import HandleBars from "handlebars";
-import {button} from "./button.tmpl.ts";
+import {Block} from "../../utils/Block.ts";
+import {ButtonProps} from "../../models/project.model.ts";
 
-type ButtonProps = {
-    text: string;
-}
-export const Button = (props: ButtonProps) => {
-    return HandleBars.compile(button)(props)
+export class Button extends Block {
+    constructor(props: ButtonProps) {
+        super('div', props);
+    }
+    
+    render(): DocumentFragment {
+        return this.compile(`
+             <button class="button-styled" type="submit" >{{ text }}</button>
+        `, this.props)
+    }
 }

@@ -1,11 +1,11 @@
-import {InputProps, ProjectLinksEnum} from "../../models/project.model.ts";
+import {InputProps, MenuProps, ProjectLinksEnum} from "../../models/project.model.ts";
 import {Block} from "../../utils/Block.ts";
-import {Logo} from "../../components/logo";
-import {Menu} from "../../components/menu";
-import {Link} from "../../components/link";
-import {Title} from "../../components/title";
-import {Input} from "../../components/input";
-import {Button} from "../../components/button";
+import {Link} from "../../components/Link";
+import {Title} from "../../components/Title";
+import {Button} from "../../components/Button";
+import {Input} from "../../components/Input";
+import {Menu} from "../../components/Menu";
+import {Logo} from "../../components/Logo";
 
 const signInFieldList =
     [
@@ -22,30 +22,57 @@ const signInFieldList =
 
     ] as InputProps
 
+const menuItemsList = [
+    {
+        item: 'main page',
+        link:  ProjectLinksEnum.home
+    },
+    {
+        item: 'sign-up page',
+        link:  ProjectLinksEnum["sign-up"]
+    },
+    {
+        item: 'not-found page',
+        link: ProjectLinksEnum["not-found"]
+    },
+    {
+        item: 'server-error page',
+        link: ProjectLinksEnum["server-error"]
+    },
+    {
+        item: 'chats page',
+        link: ProjectLinksEnum.chats
+    },
+    {
+        item: 'settings page',
+        link: ProjectLinksEnum.settings
+    },
+
+] as MenuProps
+
 export class SignInPage extends Block {
+    
     constructor() {
-        super('div', {
-          logo: Logo(),
-          menu: Menu(),
-          signUpPageLink: Link({to: `${ProjectLinksEnum["sign-up"]}`, content: 'or Sign Up'}),
-          title: Title({title: 'Log In'}),
-          input: Input(signInFieldList),
-          button: Button({text: 'Enter'})
-     });
+        super('div', '');
     }
     
     init() {
-    
+        this.children.button = new Button({text: 'Enter'});
+        this.children.input = new Input(signInFieldList);
+        this.children.link = new Link({to: `${ProjectLinksEnum["sign-up"]}`, content: 'or Sign Up'});
+        this.children.title = new Title({title: 'Log In'});
+        this.children.menu = new Menu(menuItemsList);
+        this.children.logo = new Logo();
     }
     
     render() {
         return this.compile(
-            '<div class="wrapper-sign-in-page"> ' +
-                '<header class="header"> {{{ logo }}} {{{ menu }}} </header> ' +
-                '<div class="wrapper-content">  ' +
-                    '<form class="form" name="sign-in-form"> {{{ title }}} {{{ input }}}  {{{ button }}} </form> ' +
-                        '{{{ signUpPageLink }}} ' +
-                '</div>  ' +
-            '</div>', this.props)
+            `<div class="wrapper-sign-in-page">
+                <header class="header"> {{{ logo }}} {{{menu}}} </header>
+                <div class="wrapper-content">
+                    <form class="form" name="sign-in-form"> {{{ title }}} {{{ input }}}  {{{ button }}} </form>
+                        {{{ link }}}
+                </div>
+            </div>`, this.props)
     }
 }

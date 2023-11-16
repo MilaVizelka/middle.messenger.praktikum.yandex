@@ -9,6 +9,10 @@ export type MenuProps = {
     label?: string;
 }
 
+export type ButtonProps = {
+    text: string;
+}
+
 export type ApiOptionsType = {
     method: string,
     data: any,

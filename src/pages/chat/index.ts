@@ -1,9 +1,11 @@
-import {Logo} from "../../components/logo";
-import {Link} from "../../components/link";
-import {Title} from "../../components/title";
-import {Input} from "../../components/input";
+import {Logo} from "../../components/Logo";
+import {Link} from "../../components/Link";
+import {Title} from "../../components/Title";
+
 import {InputProps, ProjectLinksEnum} from "../../models/project.model.ts";
 import {Block} from "../../utils/Block.ts";
+import {Input} from "../../components/Input";
+import {Button} from "../../components/Button";
 
 
 const chatField = [
@@ -15,30 +17,22 @@ const chatField = [
 export class ChatPage extends Block {
     
     constructor() {
-        super('div', {
-            logo: Logo(),
-            linkToSettings: Link({
-                to: `${ProjectLinksEnum.settings}`,
-                content: '<img class="settings-styled" src=\'/assets/settings.svg\' alt="settings"/>'
-            }),
-            linkToAuth: Link({
-                to: `${ProjectLinksEnum["sign-up"]}`,
-                content: '<img class="arrow-exit" src=\'/assets/exit.svg\' alt="exit"/>'
-            }),
-            title: Title({
-                title: "Music"
-            }),
-            input: Input(chatField),
-        });
+        super('div', '');
     }
     
     init() {
-    
+        this.children.button = new Button({text: 'Create account'});
+        this.children.input = new Input(chatField);
+        this.children.linkToAuth = new Link({to: `${ProjectLinksEnum.settings}`, content: '<img class="settings-styled" src=\'/assets/settings.svg\' alt="settings"/>'});
+        this.children.linkToProjectSettings = new Link({to: `${ProjectLinksEnum['sign-in']}`, content: '<img class="arrow-exit" src=\'/assets/exit.svg\' alt="exit"/>'});
+        this.children.logo = new Logo();
+        this.children.title = new Title({
+            title: "Music"
+        });
     }
     
     render() {
-        return this.compile(
-            `
+        return this.compile(`
             <div class="wrapper-chats-page">
                 <header class="header">
                     <div class="header-content-left">
@@ -50,9 +44,9 @@ export class ChatPage extends Block {
                     </div>
                      <div class="header-content-right">
                         <img src='/assets/notification.svg' alt="notification"/>
-                        {{{linkToSettings}}}
+                        {{{linkToAuth}}}
                         <img src='/assets/small-avatar.svg' alt="small-avatar"/>
-                       {{{linkToAuth}}}
+                       {{{linkToProjectSettings}}}
                     </div>
                 </header>
                 
@@ -68,6 +62,6 @@ export class ChatPage extends Block {
                      </div>
                 </div>
             <div>
-`, this.props)
-    }
+        `, this.props)
+        }
 }

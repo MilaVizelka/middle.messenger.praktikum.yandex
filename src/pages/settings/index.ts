@@ -1,9 +1,9 @@
-import {Logo} from "../../components/logo";
-import {Link} from "../../components/link";
-import {Button} from "../../components/button";
-import {Input} from "../../components/input";
+import {Logo} from "../../components/Logo";
+import {Link} from "../../components/Link";
+import {Input} from "../../components/Input";
 import {InputProps, ProjectLinksEnum} from "../../models/project.model.ts";
 import {Block} from "../../utils/Block.ts";
+import {Button} from "../../components/Button";
 
 const signUpFieldList =
     [
@@ -41,17 +41,16 @@ const signUpFieldList =
     ] as InputProps
 
 export class SettingsPage extends Block {
+    
     constructor() {
-        super('div', {
-            logo: Logo(),
-            authPageLink: Link({to: `${ProjectLinksEnum["sign-in"]}`, content: 'or Sign In'}),
-            button: Button({text: 'Save'}),
-            input: Input(signUpFieldList),
-        });
+        super('div', '');
     }
     
     init() {
-    
+        this.children.link = new Link({to: `${ProjectLinksEnum["sign-in"]}`, content: 'or Sign In'});
+        this.children.logo = new Logo();
+        this.children.button = new Button({text: 'Save'});
+        this.children.input = new Input(signUpFieldList);
     }
     
     render() {
@@ -59,7 +58,6 @@ export class SettingsPage extends Block {
             ` <div class="wrapper-settings-page">
              <header class="header">
                 {{{ logo }}}
-                {{{ menu }}}
              </header>
              <div class="wrapper-content">
                  <div class="wrapper-avatar">
@@ -72,7 +70,7 @@ export class SettingsPage extends Block {
                     <div>{{{ button }}}</div>
                 </form>
                 
-                {{{ authPageLink }}}
+                {{{ link }}}
             </div>
         </div>
     `, this.props)

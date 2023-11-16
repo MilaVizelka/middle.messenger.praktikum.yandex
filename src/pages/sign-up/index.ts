@@ -1,11 +1,11 @@
 
-import {Logo} from "../../components/logo";
-import {Link} from "../../components/link";
-import {Title} from "../../components/title";
-import {Input} from "../../components/input";
-import {Button} from "../../components/button";
+import {Logo} from "../../components/Logo";
+import {Link} from "../../components/Link";
+import {Title} from "../../components/Title";
+import {Input} from "../../components/Input";
 import {InputProps, ProjectLinksEnum} from "../../models/project.model.ts";
 import {Block} from "../../utils/Block.ts";
+import {Button} from "../../components/Button";
 
 const signUpFieldList =
     [
@@ -43,18 +43,16 @@ const signUpFieldList =
     ] as InputProps
 
 export class SignUpPage extends Block {
+    
     constructor() {
-        super('div', {
-            logo: Logo(),
-            signUpPageLink: Link({to: `${ProjectLinksEnum["sign-up"]}`, content: 'or Sign In'}),
-            title: Title({title: 'Let`s get started!'}),
-            input: Input(signUpFieldList),
-            button: Button({text: 'Create account'})
-        });
+        super('div', '');
     }
-    
     init() {
-    
+        this.children.button = new Button({text: 'Create account'});
+        this.children.input = new Input(signUpFieldList);
+        this.children.link = new Link({to: `${ProjectLinksEnum["sign-in"]}`, content: 'or Sign In'});
+        this.children.logo = new Logo();
+        this.children.title = new Title({title: 'Let`s get started!'});
     }
     
     render() {
@@ -62,8 +60,8 @@ export class SignUpPage extends Block {
             '<div class="wrapper-sign-up-page"> ' +
                 '<header class="header"> {{{ logo }}} {{{ menu }}} </header> ' +
                 '<div class="wrapper-content">  ' +
-                     '<form class="form" name="sign-in-form"> {{{ title }}} {{{ input }}}  {{{ button }}} </form> ' +
-                     '{{{ signUpPageLink }}} ' +
+                     '<form class="form" name="sign-up-form"> {{{ title }}} {{{ input }}}  {{{ button }}} </form> ' +
+                     '{{{ link }}} ' +
                 '</div>  ' +
             '</div>', this.props)
     }
