@@ -5,7 +5,7 @@ import {ProjectLinksEnum} from "../../../models/project.model.ts";
 export class NotFoundPage extends Block {
    
    constructor() {
-      super('div', '');
+      super('div', {});
    }
    
    init() {

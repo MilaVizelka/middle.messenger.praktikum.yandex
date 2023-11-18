@@ -10,7 +10,7 @@ export class Block<P extends  Record<string, any> = any> {
         FLOW_CDU: "flow:component-did-update"
     } as const;
     
-    public id = nanoid(6);
+    public id = nanoid(6).replace(/[^a-zA-Zа-яА-Я]/g, "");
     protected props: P;
     public children: Record<string, Block>;
     private eventBus: () => EventBus;
@@ -38,11 +38,11 @@ export class Block<P extends  Record<string, any> = any> {
         
         this.props = this._makePropsProxy(props);
         
-        this.eventBus = () => eventBus
+        this.eventBus = () => eventBus;
         
         this._registerEvents(eventBus);
         
-        eventBus.emit(Block.EVENTS.INIT)
+        eventBus.emit(Block.EVENTS.INIT);
         
     }
     
@@ -147,8 +147,10 @@ export class Block<P extends  Record<string, any> = any> {
         const temp =  document.createElement('template');
         
         temp.innerHTML = html
+        console.log(this.children)
         
         Object.entries(this.children).forEach(([_, component]) => {
+            
             const stub = temp.content.querySelector(`[data-id=${component.id}]`);
             
             if (!stub) {

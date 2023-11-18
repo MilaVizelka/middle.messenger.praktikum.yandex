@@ -53,7 +53,7 @@ const menuItemsList = [
 export class SignInPage extends Block {
     
     constructor() {
-        super('div', '');
+        super('div', {});
     }
     
     init() {

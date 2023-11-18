@@ -6,7 +6,7 @@ import {ProjectLinksEnum} from "../../../models/project.model.ts";
 export class ServerErrorPage extends Block {
    
    constructor() {
-      super('div', '');
+      super('div', {});
    }
    
    init() {

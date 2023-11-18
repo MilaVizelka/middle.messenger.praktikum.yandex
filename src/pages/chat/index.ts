@@ -17,7 +17,7 @@ const chatField = [
 export class ChatPage extends Block {
     
     constructor() {
-        super('div', '');
+        super('div', {});
     }
     
     init() {

@@ -15,7 +15,7 @@ export class Input extends Block {
             
               {{/each}}
             </div>
-`, this.props)
+        `, this.props)
     }
 }
 

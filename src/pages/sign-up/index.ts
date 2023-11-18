@@ -45,7 +45,7 @@ const signUpFieldList =
 export class SignUpPage extends Block {
     
     constructor() {
-        super('div', '');
+        super('div', {});
     }
     init() {
         this.children.button = new Button({text: 'Create account'});
