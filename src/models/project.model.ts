@@ -13,6 +13,10 @@ export type ButtonProps = {
     text: string;
 }
 
+export type CounterProps = {
+    text: string;
+}
+
 export type ApiOptionsType = {
     method: string,
     data: any,
