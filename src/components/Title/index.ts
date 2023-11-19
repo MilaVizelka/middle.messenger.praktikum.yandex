@@ -9,7 +9,7 @@ export class Title extends Block {
     
     render(): DocumentFragment {
         return this.compile(`
-    <h2 class="title-styled">{{ title }}</h2>
-`, this.props)
+             <h2 class="title-styled">{{ title }}</h2>
+        `, this.props)
     }
 }
