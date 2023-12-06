@@ -6,6 +6,8 @@ import {Button} from "../../components/Button";
 import {Input} from "../../components/Input";
 import {Menu} from "../../components/Menu";
 import {Logo} from "../../components/Logo";
+import {handleErrorAndSubmitting} from "../../helpers/handleErrorAndSubmiting.helper.ts";
+import {regexLogin, regexPassword} from "../../helpers/regex.ts";
 
 
 const signInFieldList =
@@ -14,14 +16,12 @@ const signInFieldList =
             placeholder: 'login',
             name: 'login',
             type: 'text',
-            class: `input-styled`,
             title: 'Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters'
         },
         {
             placeholder: 'password',
             name: 'password',
             type: 'password',
-            class: `input-styled`,
             title: 'Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters'
             
         },
@@ -82,44 +82,33 @@ export class SignInPage extends Block {
            </div>`, this.props)
         
         const inputValues = {login: '', password: ''};
-        let err = false;
+        
+        let isInputErr = false;
+        
+        let regex: RegExp;
         
         signInPage.querySelectorAll('input').forEach((input) => {
             input.addEventListener('blur', (event) => {
                 const value = (event.target as HTMLInputElement).value;
                 const key = (event.target as HTMLInputElement).name;
                 
-                const regexLogin = new RegExp('^(?!\\d+$)[A-Za-z\\d\\-_]{3,20}$');
-                const regexPassword = new RegExp('^(?=.*[A-Z])(?=.*\\d).{8,40}$');
                 
-                const wrapperElement = document.querySelector('.fields-list');
-                const errorElement =  document.createElement('span');
-                const errorElements = document.querySelectorAll('.error');
+                if (key === 'login') {
+                    regex = regexLogin;
+                } else if (key === 'password') {
+                    regex = regexPassword;
+                }
+                
+                isInputErr = !regex.test(value);
                 
                 const form = document.querySelector('form');
                 
-                err = !regexLogin.test(value) || !regexPassword.test(value);
-                
-                if (err) {
-                    
-                    errorElement.classList.add('error');
-                    errorElement.textContent = 'Ошибка ввода';
-                    
-                    errorElements.forEach((element) => {
-                        element.remove();
-                    });
-                    
-                    wrapperElement?.appendChild(errorElement)
-                }
-                
-               !err && errorElements.forEach((element) => {
-                    element.remove();
-                });
+                handleErrorAndSubmitting(isInputErr);
                 
                 form?.addEventListener('submit', (e) => {
-                    err && e.preventDefault()
-                })
-                
+                    isInputErr && e.preventDefault();
+                });
+
                 const obj = Object.assign(inputValues, { [key]: value });
                 
                 console.log(obj)
@@ -129,7 +118,4 @@ export class SignInPage extends Block {
         
         return  signInPage;
     }
-    
-    
 }
-
