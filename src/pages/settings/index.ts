@@ -4,6 +4,7 @@ import {Input} from "../../components/Input";
 import {InputProps, ProjectLinksEnum} from "../../models/project.model.ts";
 import {Block} from "../../utils/Block.ts";
 import {Button} from "../../components/Button";
+import {handleInputValidation} from "../../helpers/handleInputValidation.ts";
 
 const signUpFieldList =
     [
@@ -49,12 +50,12 @@ export class SettingsPage extends Block {
     init() {
         this.children.link = new Link({to: `${ProjectLinksEnum["sign-in"]}`, content: 'or Sign In'});
         this.children.logo = new Logo();
-        this.children.button = new Button({text: 'Save'});
+        this.children.button = new Button({text: 'Save', type: 'submit'});
         this.children.input = new Input(signUpFieldList);
     }
     
     render() {
-        return this.compile(
+        const settingsPage =  this.compile(
             ` <div class="wrapper-settings-page">
              <header class="header">
                 {{{ logo }}}
@@ -74,5 +75,12 @@ export class SettingsPage extends Block {
             </div>
         </div>
     `, this.props)
+        
+        const inputValues = {login: '', password: '', first_name: '',
+            second_name: '', email: '', phone: ''};
+        
+        handleInputValidation(settingsPage, inputValues)
+        
+        return settingsPage
     }
 }
