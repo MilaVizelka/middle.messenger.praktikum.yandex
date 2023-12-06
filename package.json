@@ -9,7 +9,7 @@
     "start": "vite build && node app.js",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint ./src --ext .ts, .js",
+    "lint": "eslint src && stylelint src/**/*.sass && tsc",
     "prepare": "husky install",
     "precommit": "lint-staged"
   },
@@ -26,19 +26,18 @@
     "nanoid": "3",
     "path": "^0.12.7",
     "sass": "^1.68.0"
-
   },
   "devDependencies": {
-    "vite": "^4.4.5",
     "@types/node": "^20.8.0",
-    "@typescript-eslint/eslint-plugin": "^6.10.0",
-    "@typescript-eslint/parser": "^6.10.0",
-    "eslint": "^8.53.0",
+    "@typescript-eslint/eslint-plugin": "^6.11.0",
+    "@typescript-eslint/parser": "^6.11.0",
+    "eslint": "^8.54.0",
     "husky": "^8.0.0",
     "lint-staged": "^15.1.0",
     "postcss-sass": "^0.5.0",
     "stylelint": "^15.11.0",
     "stylelint-config-standard": "^34.0.0",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5"
   }
 }

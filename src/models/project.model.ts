@@ -2,6 +2,9 @@ export type InputProps = {
     placeholder?: string;
     type?: string;
     name?: string;
+    minLength?: number;
+    pattern?: string;
+    title?: string;
 }
 
 export type MenuProps = {
@@ -11,6 +14,7 @@ export type MenuProps = {
 
 export type ButtonProps = {
     text: string;
+    type: string;
 }
 
 export type CounterProps = {
@@ -41,6 +45,4 @@ export enum  ProjectLinksEnum  {
     'not-found' = '/not-found',
     'server-error' = '/server-error',
     'chats' = '/chats'
-    
-    
 }
