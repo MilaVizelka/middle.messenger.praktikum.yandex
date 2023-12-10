@@ -1,4 +1,4 @@
-import {InputProps, MenuProps, ProjectLinksEnum} from "../../models/project.model.ts";
+import {InputProps, SignInInputValuesType, MenuProps, ProjectLinksEnum} from "../../models/project.model.ts";
 import {Block} from "../../utils/Block.ts";
 import {Link} from "../../components/Link";
 import {Title} from "../../components/Title";
@@ -8,6 +8,7 @@ import {Menu} from "../../components/Menu";
 import {Logo} from "../../components/Logo";
 import {handleErrorAndSubmitting} from "../../helpers/handleError.helper.ts";
 import {regexLogin, regexPassword} from "../../helpers/regex.helper.ts";
+import {HTTPTransport, METHODS} from "../../utils/HttpTransport.ts";
 
 
 const signInFieldList =
@@ -56,10 +57,31 @@ const menuItemsList = [
 
 ] as MenuProps
 
+const inputValues = {login: '', password: ''};
+
 export class SignInPage extends Block {
     
     constructor() {
         super('div', {});
+    }
+    
+    signInRequestHandler = (obj: SignInInputValuesType) => {
+        const transport = new HTTPTransport();
+        const apiUrl = 'auth/signin';
+        const options = {
+            method: METHODS.POST,
+            data: obj,
+            headers: { 'Content-Type': 'application/json' },
+            timeout: 5000,
+        };
+        
+        transport.post(apiUrl, options)
+            .then(response => {
+                console.log('Response:', response);
+            })
+            .catch(error => {
+                console.log('Error:', error);
+            });
     }
     
     init() {
@@ -81,7 +103,7 @@ export class SignInPage extends Block {
                 </div>
            </div>`, this.props)
         
-        const inputValues = {login: '', password: ''};
+        
         
         let isInputErr = false;
         
@@ -100,6 +122,7 @@ export class SignInPage extends Block {
                 }
                 
                 isInputErr = !regex.test(value);
+                console.log(isInputErr)
                 
                 const form = document.querySelector('form');
                 
@@ -113,6 +136,16 @@ export class SignInPage extends Block {
                 
                 console.log(obj)
                 
+                const submitButton = document.querySelector('button');
+
+                submitButton?.addEventListener('click', (e) => {
+                    if(!isInputErr) {
+                        this.signInRequestHandler(obj);
+                        e.preventDefault();
+                    } else
+                        handleErrorAndSubmitting(isInputErr);
+                        e.preventDefault();
+                })
             })
         });
         

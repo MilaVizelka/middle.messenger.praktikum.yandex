@@ -1,6 +1,6 @@
 import {ApiOptionsType} from "../models/project.model.ts";
 
-const METHODS = {
+export const METHODS = {
     GET: 'GET',
     POST: 'POST',
     PUT: 'PUT',
@@ -32,7 +32,7 @@ export class HTTPTransport {
             const xhr = new XMLHttpRequest();
             
             if (method === METHODS.GET) {
-                xhr.open(method, queryStringify(data));
+                xhr.open(method, `${url}/${queryStringify(data)}`);
             } else xhr.open(method, url);
             
             Object.keys(headers).forEach(key => {
@@ -41,10 +41,12 @@ export class HTTPTransport {
             
             xhr.timeout = timeout | 5000;
             
+            console.log(data)
+            
             if (method === METHODS.GET || !data) {
                 xhr.send();
             } else {
-                xhr.send(data);
+                xhr.send(JSON.stringify(data));
             }
             
             xhr.onload = function() {

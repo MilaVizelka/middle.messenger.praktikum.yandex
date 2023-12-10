@@ -7,6 +7,20 @@ export type InputProps = {
     title?: string;
 }
 
+export type SignInInputValuesType = {
+    login: string;
+    password: string;
+}
+
+export type SettingsInputValuesType = {
+    login: string,
+    password: string,
+    first_name: string,
+    second_name: string,
+    email: string,
+    phone: string
+}
+
 export type MenuProps = {
     item?: string;
     label?: string;
