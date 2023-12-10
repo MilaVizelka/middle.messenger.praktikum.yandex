@@ -9,6 +9,7 @@ $border-radius-x2: 8px
 $placeholder: #AB9F9F
 $grey-transparent: rgb(0 0 0 / 10%)
 $primary: #218FCD
+$active-preview-background: #D3E1E9
 $dark: #0A151F
 $black: #000
 $background-color: #101E2B
@@ -18,7 +19,7 @@ $grey: #ABABAB
 $lightGrey: #F7F7F7
 $text-description: #8F8989
 $grey-background: #E5E5E6
-$active-message-background: #DFE9EF
+$active-message-background: #B3DFF8
 $background-color-field: #EFEFEF
 
 html,
@@ -63,6 +64,7 @@ li
   height: 100vh
   width: $width
   background-color: $grey-background
+  overflow: hidden
 
   .header
     height: 60px
@@ -79,7 +81,7 @@ li
     .header-content
       display: flex
       justify-content: space-between
-      width: 100%
+      width: $width
 
     .header-content-right
       display: flex
@@ -103,7 +105,7 @@ li
     padding: 20px
     display: flex
     gap: 8px
-    height: 95%
+    height: 94%
 
     .preview-chats,
     .main-chats
@@ -127,7 +129,7 @@ li
         margin-bottom: 4px
 
       .active
-          background-color: $active-message-background
+          background-color: $active-preview-background
 
       .input-styled
         padding: 6px 8px
@@ -149,14 +151,21 @@ li
         justify-content: space-between
         color: $dark
 
+        .fields-list
+          display: grid
 
         .input-styled
           margin-bottom: 15px
           background-color: $background-color-field
           border: none
+          border-top-left-radius: 0
+          width: 70%
 
         .owner
           background-color: $active-message-background
+          border-bottom-right-radius: 0
+          border-top-left-radius: 8px
+          justify-self: end
 
       &-header
         display: flex
@@ -175,11 +184,14 @@ li
         border-radius: 10px
         color: $grey
 
-
-      .input-styled
-        padding: 12px 8px
-        width: 97%
-        position: relative
+      .block-submit
+        .input-message
+          padding: 12px 8px
+          width: 97%
+          position: relative
+          background-color: transparent
+          border: 1px solid $grey-transparent
+          border-radius: 8px
 
       .button-styled
         width: 30px
@@ -191,7 +203,7 @@ li
         position: absolute
         margin-top: -50px
         right: 0
-        margin-right: 55px
+        margin-right: 50px
 
 .wrapper-sign-in-page,
 .wrapper-sign-up-page,

@@ -6,7 +6,7 @@ import {InputProps, ProjectLinksEnum} from "../../models/project.model.ts";
 import {Block} from "../../utils/Block.ts";
 import {Input} from "../../components/Input";
 import {Button} from "../../components/Button";
-
+import {regexEmptyField} from "../../helpers/regex.helper.ts";
 
 const chatField = [
     {
@@ -16,21 +16,22 @@ const chatField = [
 
 const chatMessageField = [
     {
-        placeholder: 'add message'
+        placeholder: 'add message',
+        className: 'input-message'
     }
 ] as InputProps
 
 const chatMessages = [
     {
         id: 1,
-        name: 'Alexandr Ivanov',
+        name: 'message',
         value: 'test',
         type: 'text',
         readonly: true
     },
     {
         id: 2,
-        name: 'Michail Petrov',
+        name: 'message',
         value: 'owner',
         role: 'owner',
         className: 'owner',
@@ -59,7 +60,7 @@ export class ChatPage extends Block {
     }
     
     render() {
-        return this.compile(`
+        const chatsPage =  this.compile(`
             <div class="wrapper-chats-page">
                 <header class="header">
                     <div class="header-content">
@@ -75,14 +76,14 @@ export class ChatPage extends Block {
                 <div class="wrapper-chats">
                      <aside class="preview-chats">
                             {{{inputSearch}}}
-                            <div class="preview-message-block">test</div>
-                            <div class="preview-message-block active">test</div>
+                            <div class="preview-message-block">Just Matt</div>
+                            <div class="preview-message-block active">Joe The Runner</div>
                             
                      </aside>
                      <div class="main-chats">
                          <div class="main-chats-header">
                              <img src='/assets/user.svg' alt="user"/>
-                             <span>Alexandr Ivanov</span>
+                             <span>Joe The Runner</span>
                          </div>
                          <div class="date">10 december</div>
                          <form>
@@ -100,5 +101,29 @@ export class ChatPage extends Block {
                 </div>
             <div>
         `, this.props)
-        }
+        
+        const inputValues = {message: '', id: '1'};
+        
+        let isInputErr = false;
+        
+        chatsPage.querySelectorAll('input').forEach((input) => {
+            input.addEventListener('blur', (event) => {
+                const value = (event.target as HTMLInputElement).value;
+                
+                isInputErr = !regexEmptyField.test(value);
+                
+                const form = document.querySelector('form');
+                
+                form?.addEventListener('submit', (e) => {
+                    isInputErr && e.preventDefault();
+                });
+                
+                const obj = Object.assign(inputValues, {message: value });
+                
+                console.log(obj)
+                
+            })
+        });
+        return chatsPage
+    }
 }
