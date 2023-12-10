@@ -2,26 +2,16 @@
   "compilerOptions": {
     "target": "esnext",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "allowJs": true,
-    "checkJs": true,
-    "esModuleInterop": true,
     "outDir": "./dist",
     "types": ["vite/client"],
-
-    /* Bundler mode */
+    "strict": true,
     "moduleResolution": "Node",
     "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "sourceMap": true,
     "strictNullChecks": true,
-
-    /* Linting */
-    "strict": true,
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
