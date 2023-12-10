@@ -6,8 +6,8 @@ import {Button} from "../../components/Button";
 import {Input} from "../../components/Input";
 import {Menu} from "../../components/Menu";
 import {Logo} from "../../components/Logo";
-import {handleErrorAndSubmitting} from "../../helpers/handleErrorAndSubmiting.helper.ts";
-import {regexLogin, regexPassword} from "../../helpers/regex.ts";
+import {handleErrorAndSubmitting} from "../../helpers/handleError.helper.ts";
+import {regexLogin, regexPassword} from "../../helpers/regex.helper.ts";
 
 
 const signInFieldList =

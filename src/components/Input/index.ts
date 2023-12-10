@@ -10,8 +10,11 @@ export class Input extends Block {
        return  this.compile(`
             <div class="fields-list">
                 {{#each this}}
-                    <input class="input-styled" type={{type}} name={{name}} placeholder="{{placeholder}}"
-                    {{#if pattern}} pattern={{pattern}} {{/if}} required />
+                    <input class="input-styled {{className}}" type={{type}} name="{{name}}" {{#if value}} value={{value}}
+                         {{/if}} {{#if placeholder}} placeholder="{{placeholder}}" {{/if}}
+                         {{#if pattern}} pattern={{pattern}} {{/if}}
+                         {{#if readonly}} readonly {{/if}}
+                     required />
                 {{/each}}
             </div>
         `, this.props);

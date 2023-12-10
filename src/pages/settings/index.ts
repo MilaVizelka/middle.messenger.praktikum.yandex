@@ -4,7 +4,7 @@ import {Input} from "../../components/Input";
 import {InputProps, ProjectLinksEnum} from "../../models/project.model.ts";
 import {Block} from "../../utils/Block.ts";
 import {Button} from "../../components/Button";
-import {handleInputValidation} from "../../helpers/handleInputValidation.ts";
+import {inputValidationAndSubmitingHelper} from "../../helpers/inputValidationAndSubmiting.helper.ts";
 
 const signUpFieldList =
     [
@@ -79,7 +79,7 @@ export class SettingsPage extends Block {
         const inputValues = {login: '', password: '', first_name: '',
             second_name: '', email: '', phone: ''};
         
-        handleInputValidation(settingsPage, inputValues)
+        inputValidationAndSubmitingHelper(settingsPage, inputValues)
         
         return settingsPage
     }

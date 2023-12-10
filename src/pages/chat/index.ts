@@ -14,6 +14,31 @@ const chatField = [
     }
 ] as InputProps
 
+const chatMessageField = [
+    {
+        placeholder: 'add message'
+    }
+] as InputProps
+
+const chatMessages = [
+    {
+        id: 1,
+        name: 'Alexandr Ivanov',
+        value: 'test',
+        type: 'text',
+        readonly: true
+    },
+    {
+        id: 2,
+        name: 'Michail Petrov',
+        value: 'owner',
+        role: 'owner',
+        className: 'owner',
+        type: 'text',
+        readonly: true
+    }
+] as InputProps
+
 export class ChatPage extends Block {
     
     constructor() {
@@ -21,13 +46,15 @@ export class ChatPage extends Block {
     }
     
     init() {
-        this.children.button = new Button({text: 'Create account'});
-        this.children.input = new Input(chatField);
+        this.children.button = new Button({text: '<img class="settings-styled" src=\'/assets/send-icon.svg\' alt="settings"/>', type: 'submit'});
+        this.children.inputSearch = new Input(chatField);
+        this.children.inputSendMessage = new Input(chatMessageField);
+        this.children.inputMessage = new Input(chatMessages);
         this.children.linkToAuth = new Link({to: `${ProjectLinksEnum.settings}`, content: '<img class="settings-styled" src=\'/assets/settings.svg\' alt="settings"/>'});
         this.children.linkToProjectSettings = new Link({to: `${ProjectLinksEnum['sign-in']}`, content: '<img class="arrow-exit" src=\'/assets/exit.svg\' alt="exit"/>'});
         this.children.logo = new Logo();
         this.children.title = new Title({
-            title: "Music"
+            title: "Music chat"
         });
     }
     
@@ -35,30 +62,40 @@ export class ChatPage extends Block {
         return this.compile(`
             <div class="wrapper-chats-page">
                 <header class="header">
-                    <div class="header-content-left">
-                       {{{logo}}}
-                        <label class="input-search-label">
-                            <img src='/assets/search.svg' alt="search"/>
-                            {{{input}}}
-                        </label>
+                    <div class="header-content">
+                        {{{logo}}}
                     </div>
-                     <div class="header-content-right">
-                        <img src='/assets/notification.svg' alt="notification"/>
-                        {{{linkToAuth}}}
-                        <img src='/assets/small-avatar.svg' alt="small-avatar"/>
+                    <div class="header-content-right">
+                       <img src='/assets/small-avatar.svg' alt="small-avatar"/>
+                       {{{linkToAuth}}}
                        {{{linkToProjectSettings}}}
                     </div>
                 </header>
                 
                 <div class="wrapper-chats">
                      <aside class="preview-chats">
-                          {{{title}}}
+                            {{{inputSearch}}}
+                            <div class="preview-message-block">test</div>
+                            <div class="preview-message-block active">test</div>
+                            
                      </aside>
                      <div class="main-chats">
                          <div class="main-chats-header">
                              <img src='/assets/user.svg' alt="user"/>
                              <span>Alexandr Ivanov</span>
                          </div>
+                         <div class="date">10 december</div>
+                         <form>
+                             <div class="block-message">
+                                 {{{inputMessage}}}
+                            </div>
+                            <div class="block-submit">
+                                 {{{inputSendMessage}}}
+                                 <button class="button-styled" type="submit">
+                                    <img class="settings-styled" src=\'/assets/send-icon.svg\' alt="submit-action"/>
+                                 </button>
+                            </div>
+                         </form>
                      </div>
                 </div>
             <div>

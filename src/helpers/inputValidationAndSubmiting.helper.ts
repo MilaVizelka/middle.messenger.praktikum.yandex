@@ -1,7 +1,7 @@
-import {regexEmail, regexLogin, regexName, regexPassword, regexPhone} from "./regex.ts";
-import {handleErrorAndSubmitting} from "./handleErrorAndSubmiting.helper.ts";
+import {regexEmail, regexLogin, regexName, regexPassword, regexPhone} from "./regex.helper.ts";
+import {handleErrorAndSubmitting} from "./handleError.helper.ts";
 
-export const handleInputValidation = (page:  DocumentFragment, inputValues = {}) => {
+export const inputValidationAndSubmitingHelper = (page:  DocumentFragment, inputValues = {}) => {
     let isInputErr = false;
     
     let regex: RegExp;
@@ -36,7 +36,6 @@ export const handleInputValidation = (page:  DocumentFragment, inputValues = {})
             const obj = Object.assign(inputValues, { [key]: value });
             
             console.log(obj)
-            
         })
     });
 }
