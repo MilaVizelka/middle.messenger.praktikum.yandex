@@ -14,16 +14,16 @@ function queryStringify(data: string) {
 export class HTTPTransport {
     get(url: string, options: ApiOptionsType) {
         return this.request(url, {...options, method: METHODS.GET})
-    };
+    }
     post(url: string, options: ApiOptionsType) {
         return this.request(url, {...options, method: METHODS.POST})
-    };
+    }
     delete(url: string, options: ApiOptionsType) {
         return this.request(url, {...options, method: METHODS.DELETE})
-    };
+    }
     put(url: string, options: ApiOptionsType) {
         return this.request(url, {...options, method: METHODS.PUT})
-    };
+    }
     
     request = (url: string, options: ApiOptionsType) => {
         const {method, data, headers={}, timeout} = options;
