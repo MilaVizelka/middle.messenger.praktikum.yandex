@@ -50,7 +50,7 @@ li
   border: none
   border-radius: $border-radius-x2
   padding: 20px
-  width: 100%
+  width: $width
   color: $white
   background-color: $primary
   font-size: 20px
@@ -59,151 +59,6 @@ li
 
 .link-styled
   text-decoration: none
-
-.wrapper-chats-page
-  height: 100vh
-  width: $width
-  background-color: $grey-background
-  overflow: hidden
-
-  .header
-    height: 60px
-    background-color: $white
-    padding: 0 20px
-    display: flex
-    align-items: center
-
-    span
-      display: flex
-      align-items: center
-      justify-content: space-between
-
-    .header-content
-      display: flex
-      justify-content: space-between
-      width: $width
-
-    .header-content-right
-      display: flex
-      align-items: center
-      gap: 20px
-
-      *
-        display: flex
-        align-items: center
-        gap: 15px
-
-
-    span
-      color: $primary
-      font-size: 12px
-
-    .menu-styled
-      padding: 0
-
-  .wrapper-chats
-    padding: 20px
-    display: flex
-    gap: 8px
-    height: 94%
-
-    .preview-chats,
-    .main-chats
-      background-color: $white
-      border-radius: 10px
-      padding: 15px 0
-
-    .preview-chats
-      width: 300px
-
-      .title-styled
-        color: $white
-        font-size: 20px
-        font-weight: 700
-        margin: 0
-
-      .preview-message-block
-        background-color: $lightGrey
-        height: 63px
-        padding: 8px 15px
-        margin-bottom: 4px
-
-      .active
-          background-color: $active-preview-background
-
-      .input-styled
-        padding: 6px 8px
-        margin: 0 0 20px 15px
-        width: 84%
-
-    .main-chats
-      display: flex
-      flex-direction: column
-      flex-grow: 1
-      padding: 15px
-      position: relative
-
-      form,
-      .block-message
-        height: 100%
-        display: flex
-        flex-direction: column
-        justify-content: space-between
-        color: $dark
-
-        .fields-list
-          display: grid
-
-        .input-styled
-          margin-bottom: 15px
-          background-color: $background-color-field
-          border: none
-          border-top-left-radius: 0
-          width: 70%
-
-        .owner
-          background-color: $active-message-background
-          border-bottom-right-radius: 0
-          border-top-left-radius: 8px
-          justify-self: end
-
-      &-header
-        display: flex
-        align-items: center
-        gap: $indent-x2
-        color: $grey
-        font-size: $regular
-        font-weight: 700
-        margin-bottom: 25px
-
-      .date
-        align-self: center
-        margin-bottom: 20px
-        border: 1px solid $grey-transparent
-        padding: 4px 12px
-        border-radius: 10px
-        color: $grey
-
-      .block-submit
-        .input-message
-          padding: 12px 8px
-          width: 97%
-          position: relative
-          background-color: transparent
-          border: 1px solid $grey-transparent
-          border-radius: 8px
-
-      .button-styled
-        width: 30px
-        height: 30px
-        display: flex
-        align-items: center
-        justify-content: center
-        padding: 0
-        position: absolute
-        margin-top: -50px
-        right: 0
-        margin-right: 50px
 
 .wrapper-sign-in-page,
 .wrapper-sign-up-page,
@@ -218,7 +73,7 @@ li
   position: relative
 
   .header
-    width: 100%
+    width: $width
     display: flex
     justify-self: flex-start
     align-items: center
@@ -291,3 +146,138 @@ li
         color: $text-description
         font-weight: $weight-regular
         margin-bottom: 25px
+
+.wrapper-chats-page
+  height: 100vh
+  width: $width
+  background-color: $grey-background
+  overflow: hidden
+
+  .header
+    height: 60px
+    background-color: $white
+    padding: 0 20px
+    display: flex
+    align-items: center
+
+    .header-content
+      display: flex
+      justify-content: space-between
+      width: $width
+
+    .header-content-right
+      display: flex
+      align-items: center
+      gap: 20px
+
+      *
+        display: flex
+        align-items: center
+        gap: 15px
+
+    .menu-styled
+      padding: 0
+
+  .wrapper-chats
+    padding: 20px
+    display: flex
+    gap: $indent-x2
+    height: 94%
+
+    .preview-chats,
+    .main-chats
+      background-color: $white
+      border-radius: 10px
+      padding: 15px 0
+
+    .preview-chats
+      width: 300px
+
+      .title-styled
+        color: $white
+        font-size: 20px
+        font-weight: 700
+        margin: 0
+
+      .preview-message-block
+        background-color: $lightGrey
+        height: 63px
+        padding: $indent-x2 15px
+        margin-bottom: 4px
+
+      .active
+        background-color: $active-preview-background
+
+      .input-styled
+        padding: 6px $indent-x2
+        margin: 0 0 20px 15px
+        width: 84%
+
+    .main-chats
+      display: flex
+      flex-direction: column
+      flex-grow: 1
+      padding: 15px
+      position: relative
+
+      form,
+      .block-message
+        height: $height
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        color: $dark
+
+        .fields-list
+          display: grid
+
+        .input-styled
+          margin-bottom: 15px
+          background-color: $background-color-field
+          border: none
+          border-top-left-radius: 0
+          width: 70%
+
+        .owner
+          background-color: $active-message-background
+          border-bottom-right-radius: 0
+          border-top-left-radius: $border-radius-x2
+          justify-self: end
+
+      &-header
+        display: flex
+        align-items: center
+        gap: $indent-x2
+        color: $grey
+        font-size: $regular
+        font-weight: 700
+        margin-bottom: 25px
+
+      .date
+        align-self: center
+        margin-bottom: 20px
+        border: 1px solid $grey-transparent
+        padding: 4px 12px
+        border-radius: 10px
+        color: $grey
+
+      .block-submit
+        .input-message
+          padding: 12px $indent-x2
+          width: 97%
+          position: relative
+          background-color: transparent
+          border: 1px solid $grey-transparent
+          border-radius: $border-radius-x2
+
+      .button-styled
+        width: 30px
+        height: 30px
+        display: flex
+        align-items: center
+        justify-content: center
+        padding: 0
+        position: absolute
+        margin-top: -50px
+        right: 0
+        margin-right: 50px
