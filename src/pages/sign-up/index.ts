@@ -3,10 +3,10 @@ import {Logo} from '../../components/Logo';
 import {Link} from '../../components/Link';
 import {Title} from '../../components/Title';
 import {Input} from '../../components/Input';
+import {Button} from "../../components/Button";
 import {InputProps, ProjectLinksEnum} from '../../models/project.model.ts';
 import {Block} from '../../utils/Block.ts';
 import {inputValidationAndSubmittingHelper} from '../../helpers/inputValidationAndSubmiting.helper.ts';
-import {Button} from "../../components/Button";
 
 const signUpFieldList =
     [
