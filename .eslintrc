@@ -1,1 +1,4 @@
 "extends": "airbnb-base/legacy"
+"module.exports": {
+  "parser": "@babel/eslint-parser",
+}
