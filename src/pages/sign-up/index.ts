@@ -50,7 +50,7 @@ export class SignUpPage extends Block {
         super('div', {});
     }
     init() {
-        this.children.button = new Button({text: 'Create account', type: 'submit'});
+        this.children.button = new Button({props: {text: 'Create account', type: 'submit'}});
         this.children.input = new Input(signUpFieldList);
         this.children.link = new Link({to: `${ProjectLinksEnum["sign-in"]}`, content: 'or Sign In'});
         this.children.logo = new Logo();

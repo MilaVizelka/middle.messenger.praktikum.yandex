@@ -47,7 +47,12 @@ export class ChatPage extends Block {
     }
     
     init() {
-        this.children.button = new Button({text: '<img class="settings-styled" src=\'/assets/send-icon.svg\' alt="settings"/>', type: 'submit'});
+        this.children.button = new Button({
+            props: {
+                text: '<img class="settings-styled" src=\'/assets/send-icon.svg\' alt="settings"/>',
+                type: 'submit'
+            }
+        });
         this.children.inputSearch = new Input(chatField);
         this.children.inputSendMessage = new Input(chatMessageField);
         this.children.inputMessage = new Input(chatMessages);

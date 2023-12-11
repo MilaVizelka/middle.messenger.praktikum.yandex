@@ -84,7 +84,7 @@ export class SignInPage extends Block {
     }
     
     init() {
-        this.children.button = new Button({text: 'Enter', type: 'submit'});
+        this.children.button = new Button({props: {text: 'Enter', type: 'submit'}});
         this.children.input = new Input(signInFieldList);
         this.children.link = new Link({to: `${ProjectLinksEnum["sign-up"]}`, content: 'or Sign Up'});
         this.children.title = new Title({title: 'Log In'});
