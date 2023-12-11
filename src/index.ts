@@ -14,7 +14,6 @@ const ROUTES: Record<string, any> = {
     '/chats': ChatPage,
     '/settings': SettingsPage,
     '/': SignInPage,
-    
 }
 
 window.addEventListener('DOMContentLoaded', () => {
