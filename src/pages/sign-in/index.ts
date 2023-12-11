@@ -2,13 +2,13 @@ import {InputProps, SignInInputValuesType, MenuProps, ProjectLinksEnum} from '..
 import {Block} from '../../utils/Block.ts';
 import {Link} from '../../components/Link';
 import {Title} from '../../components/Title';
-import {Button} from '../../components/Button';
 import {Input} from '../../components/Input';
 import {Menu} from '../../components/Menu';
 import {Logo} from '../../components/Logo';
 import {handleErrorAndSubmitting} from '../../helpers/handleError.helper.ts';
 import {regexLogin, regexPassword} from '../../helpers/regex.helper.ts';
 import {HTTPTransport, METHODS} from '../../utils/HttpTransport.ts';
+import {Button} from "../../components/Button";
 
 const signInFieldList =
     [
