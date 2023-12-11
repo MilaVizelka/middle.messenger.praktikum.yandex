@@ -6,6 +6,7 @@
     "types": ["vite/client"],
     "strict": true,
     "moduleResolution": "Node",
+    "noEmit": true,
     "allowImportingTsExtensions": true,
     "noImplicitAny": true,
     "noUnusedLocals": true,
