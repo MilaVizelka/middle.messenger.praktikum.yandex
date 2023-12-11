@@ -1,4 +1,4 @@
-import {ApiOptionsType} from "../models/project.model.ts";
+import {ApiOptionsType} from '../models/project.model.ts';
 
 export const METHODS = {
     GET: 'GET',

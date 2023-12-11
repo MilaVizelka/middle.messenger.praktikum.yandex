@@ -1,5 +1,5 @@
-import {Block} from "../../utils/Block.ts";
-import {ButtonProps} from "../../models/project.model.ts";
+import {Block} from '../../utils/Block.ts';
+import {ButtonProps} from '../../models/project.model.ts';
 
 export class Button extends Block {
     constructor(props: ButtonProps) {

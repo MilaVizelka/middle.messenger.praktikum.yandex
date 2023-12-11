@@ -1,7 +1,7 @@
-import {Link} from "../../../components/Link";
-import {Title} from "../../../components/Title";
-import {Block} from "../../../utils/Block.ts";
-import {ProjectLinksEnum} from "../../../models/project.model.ts";
+import {Link} from '../../../components/Link';
+import {Title} from '../../../components/Title';
+import {Block} from '../../../utils/Block.ts';
+import {ProjectLinksEnum} from '../../../models/project.model.ts';
 
 export class ServerErrorPage extends Block {
    

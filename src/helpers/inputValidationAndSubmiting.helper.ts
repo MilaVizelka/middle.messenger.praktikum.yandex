@@ -1,7 +1,7 @@
-import {regexEmail, regexLogin, regexName, regexPassword, regexPhone} from "./regex.helper.ts";
-import {handleErrorAndSubmitting} from "./handleError.helper.ts";
+import {regexEmail, regexLogin, regexName, regexPassword, regexPhone} from './regex.helper.ts';
+import {handleErrorAndSubmitting} from './handleError.helper.ts';
 
-export const inputValidationAndSubmitingHelper = (page:  DocumentFragment, inputValues = {}) => {
+export const inputValidationAndSubmittingHelper = (page:  DocumentFragment, inputValues = {}) => {
     let isInputErr = false;
     
     let regex: RegExp;

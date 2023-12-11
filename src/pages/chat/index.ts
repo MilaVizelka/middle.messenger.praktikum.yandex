@@ -1,12 +1,12 @@
-import {Logo} from "../../components/Logo";
-import {Link} from "../../components/Link";
-import {Title} from "../../components/Title";
+import {Logo} from '../../components/Logo';
+import {Link} from '../../components/Link';
+import {Title} from '../../components/Title';
 
-import {InputProps, ProjectLinksEnum} from "../../models/project.model.ts";
-import {Block} from "../../utils/Block.ts";
-import {Input} from "../../components/Input";
-import {Button} from "../../components/Button";
-import {regexEmptyField} from "../../helpers/regex.helper.ts";
+import {InputProps, ProjectLinksEnum} from '../../models/project.model.ts';
+import {Block} from '../../utils/Block.ts';
+import {Input} from '../../components/Input';
+import {Button} from '../../components/Button';
+import {regexEmptyField} from '../../helpers/regex.helper.ts';
 
 const chatField = [
     {

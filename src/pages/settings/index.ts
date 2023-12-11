@@ -1,10 +1,10 @@
-import {Logo} from "../../components/Logo";
-import {Link} from "../../components/Link";
-import {Input} from "../../components/Input";
-import {InputProps, ProjectLinksEnum} from "../../models/project.model.ts";
-import {Block} from "../../utils/Block.ts";
-import {Button} from "../../components/Button";
-import {inputValidationAndSubmitingHelper} from "../../helpers/inputValidationAndSubmiting.helper.ts";
+import {Logo} from '../../components/Logo';
+import {Link} from '../../components/Link';
+import {Input} from '../../components/Input';
+import {InputProps, ProjectLinksEnum} from '../../models/project.model.ts';
+import {Block} from '../../utils/Block.ts';
+import {Button} from '../../components/Button';
+import {inputValidationAndSubmittingHelper} from '../../helpers/inputValidationAndSubmiting.helper.ts';
 
 const signUpFieldList =
     [
@@ -79,7 +79,7 @@ export class SettingsPage extends Block {
         const inputValues = {login: '', password: '', first_name: '',
             second_name: '', email: '', phone: ''};
         
-        inputValidationAndSubmitingHelper(settingsPage, inputValues)
+        inputValidationAndSubmittingHelper(settingsPage, inputValues)
         
         return settingsPage
     }

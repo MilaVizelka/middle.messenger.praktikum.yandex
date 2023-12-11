@@ -1,5 +1,5 @@
 import {MenuProps} from "../../models/project.model.ts";
-import {Block} from "../../utils/Block.ts";
+import {Block} from '../../utils/Block.ts';
 
 export class Menu  extends Block {
     constructor(props: MenuProps) {

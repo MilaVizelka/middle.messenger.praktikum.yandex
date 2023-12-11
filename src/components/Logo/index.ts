@@ -1,5 +1,4 @@
-import {Block} from "../../utils/Block.ts";
-
+import {Block} from '../../utils/Block.ts';
 
 export class Logo extends Block {
     constructor() {

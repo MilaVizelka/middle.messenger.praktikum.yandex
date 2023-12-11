@@ -1,12 +1,12 @@
 
-import {Logo} from "../../components/Logo";
-import {Link} from "../../components/Link";
-import {Title} from "../../components/Title";
-import {Input} from "../../components/Input";
-import {InputProps, ProjectLinksEnum} from "../../models/project.model.ts";
-import {Block} from "../../utils/Block.ts";
-import {Button} from "../../components/Button";
-import {inputValidationAndSubmitingHelper} from "../../helpers/inputValidationAndSubmiting.helper.ts";
+import {Logo} from '../../components/Logo';
+import {Link} from '../../components/Link';
+import {Title} from '../../components/Title';
+import {Input} from '../../components/Input';
+import {InputProps, ProjectLinksEnum} from '../../models/project.model.ts';
+import {Block} from '../../utils/Block.ts';
+import {Button} from '../../components/Button';
+import {inputValidationAndSubmittingHelper} from '../../helpers/inputValidationAndSubmiting.helper.ts';
 
 const signUpFieldList =
     [
@@ -70,7 +70,7 @@ export class SignUpPage extends Block {
         const inputValues = {login: '', password: '', first_name: '',
             second_name: '', email: '', phone: ''};
         
-        inputValidationAndSubmitingHelper(signUpPage, inputValues)
+        inputValidationAndSubmittingHelper(signUpPage, inputValues)
         
         return signUpPage
     }

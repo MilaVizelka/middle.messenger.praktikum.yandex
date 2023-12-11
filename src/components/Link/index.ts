@@ -1,5 +1,5 @@
-import {LinkProps} from "../../models/project.model.ts";
-import {Block} from "../../utils/Block.ts";
+import {LinkProps} from '../../models/project.model.ts';
+import {Block} from '../../utils/Block.ts';
 
 export class Link extends Block {
     constructor(props: LinkProps) {

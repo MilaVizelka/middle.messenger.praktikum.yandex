@@ -1,5 +1,5 @@
-import {InputProps} from "../../models/project.model.ts";
-import {Block} from "../../utils/Block.ts";
+import {InputProps} from '../../models/project.model.ts';
+import {Block} from '../../utils/Block.ts';
 
 export class Input extends Block {
     constructor(props: InputProps) {

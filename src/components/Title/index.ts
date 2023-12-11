@@ -1,5 +1,5 @@
-import {TitleProps} from "../../models/project.model.ts";
-import {Block} from "../../utils/Block.ts";
+import {TitleProps} from '../../models/project.model.ts';
+import {Block} from '../../utils/Block.ts';
 
 export class Title extends Block {
     

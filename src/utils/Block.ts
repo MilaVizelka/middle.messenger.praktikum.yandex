@@ -1,6 +1,7 @@
 import {nanoid} from "nanoid";
 import {EventBus} from "./EventBus.ts";
-import HandleBars from "handlebars";
+import * as HandleBars from "handlebars";
+
 
 export class Block<P extends  Record<string, any> = any> {
     static EVENTS = {
