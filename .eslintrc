@@ -13,11 +13,11 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended"
   ],
+  "env" : {
+    "node": true
+  },
   "rules": {
-    "indent": ["error", 2],
-    "quotes": ["error", "single"],
-    "semi": ["error", "always"],
-    "@typescript-eslint/ban-ts-comment": "error",
-    "@typescript-eslint/no-inferrable-types": "off"
+    "no-undef": "off",
+    "@typescript-eslint/no-var-requires": "off"
   }
 }
