@@ -8,7 +8,7 @@ export const METHODS = {
 };
 
 function queryStringify(data: string) {
-    return `?${Object.entries(data).map(([key, val]) => `${key}=${val}`).join('&')}`
+    return `?${Object.entries(data).map(([key, val]) => `${key}=${val}`).join('&')}`;
 }
 
 export class HTTPTransport {
@@ -41,7 +41,7 @@ export class HTTPTransport {
             
             xhr.timeout = timeout | 5000;
             
-            console.log(data)
+            console.log(data);
             
             if (method === METHODS.GET || !data) {
                 xhr.send();
@@ -57,6 +57,6 @@ export class HTTPTransport {
             xhr.onerror = reject;
             xhr.ontimeout = reject;
             
-        }).catch(error => console.log(error))
+        }).catch(error => console.log(error));
     };
 }
