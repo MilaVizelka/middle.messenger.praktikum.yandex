@@ -13,16 +13,16 @@ function queryStringify(data: string) {
 
 export class HTTPTransport {
     get(url: string, options: ApiOptionsType) {
-        return this.request(url, {...options, method: METHODS.GET});
+        return this.request(url, {...options, method: METHODS.GET})
     };
     post(url: string, options: ApiOptionsType) {
-        return this.request(url, {...options, method: METHODS.POST});
+        return this.request(url, {...options, method: METHODS.POST})
     };
     delete(url: string, options: ApiOptionsType) {
-        return this.request(url, {...options, method: METHODS.DELETE});
+        return this.request(url, {...options, method: METHODS.DELETE})
     };
     put(url: string, options: ApiOptionsType) {
-        return this.request(url, {...options, method: METHODS.PUT});
+        return this.request(url, {...options, method: METHODS.PUT})
     };
     
     request = (url: string, options: ApiOptionsType) => {
@@ -41,7 +41,7 @@ export class HTTPTransport {
             
             xhr.timeout = timeout | 5000;
             
-            console.log(data);
+            console.log(data)
             
             if (method === METHODS.GET || !data) {
                 xhr.send();
@@ -57,6 +57,6 @@ export class HTTPTransport {
             xhr.onerror = reject;
             xhr.ontimeout = reject;
             
-        }).catch(error => console.log(error));
+        }).catch(error => console.log(error))
     };
 }
