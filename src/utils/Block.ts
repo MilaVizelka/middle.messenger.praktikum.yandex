@@ -2,7 +2,6 @@ import {nanoid} from "nanoid";
 import {EventBus} from "./EventBus.ts";
 import * as HandleBars from "handlebars";
 
-
 export class Block<P extends  Record<string, any> = any> {
     static EVENTS = {
         INIT: "init",
@@ -136,7 +135,7 @@ export class Block<P extends  Record<string, any> = any> {
         this._addEvents()
     }
     
-    protected compile(template: string, context: any) {
+    protected compile(template: string, context: { [key: string]: string }) {
         const contextAndStubs = {...context}
         
         Object.entries(this.children).forEach(([name, component]) => {
@@ -170,17 +169,17 @@ export class Block<P extends  Record<string, any> = any> {
         return new DocumentFragment();
     }
     
-    _makePropsProxy(props: any) {
+    _makePropsProxy(props: P) {
 
         const self = this;
         
         return new Proxy(props, {
             get(target, prop) {
-                const value = target[prop];
+                const value = target[prop as string] ;
                 return typeof value === "function" ? value.bind(target) : value;
             },
-            set(target, prop, value) {
-                target[prop] = value;
+            set: function (target, prop, value) {
+                (target[prop as string] as P) = value;
                 
                 // Запускаем обновление компоненты
                 // Плохой cloneDeep, в следующей итерации нужно заставлять добавлять cloneDeep им самим
@@ -196,13 +195,4 @@ export class Block<P extends  Record<string, any> = any> {
         // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
         return document.createElement(tagName);
     }
-    
-    show() {
-        this.element!.style.display = "block";
-    }
-    
-    hide() {
-        this.element!.style.display = "none";
-    }
-    
 }

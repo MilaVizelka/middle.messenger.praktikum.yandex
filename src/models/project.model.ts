@@ -38,7 +38,7 @@ export type CounterProps = {
 export type ApiOptionsType = {
     method: string,
     data: any,
-    headers: any,
+    headers: { [key: string]: string },
     timeout: number
 }
 

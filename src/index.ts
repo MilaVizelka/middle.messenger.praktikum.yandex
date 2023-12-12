@@ -6,6 +6,8 @@ import {SignUpPage} from "./pages/sign-up";
 import {ChatPage} from "./pages/chat";
 import {SettingsPage} from "./pages/settings";
 
+// если поставить typeof Block вторым аргументом, то получаю ошибку в 25 строке
+// пока не разобралась, чем заменить any
 const ROUTES: Record<string, any> = {
     '/not-found': NotFoundPage,
     '/server-error': ServerErrorPage,
@@ -23,7 +25,7 @@ window.addEventListener('DOMContentLoaded', () => {
         const Component = ROUTES[window.location.pathname] || NotFoundPage;
         const component = new Component();
         
-        root.innerHTML = ''; // Clear the root element before appending new content
+        root.textContent = ''; // Clear the root element before appending new content
         root.appendChild(component.element!);
     }
 })
