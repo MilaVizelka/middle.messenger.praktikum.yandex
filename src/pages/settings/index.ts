@@ -4,7 +4,7 @@ import {Input} from '../../components/Input';
 import {InputProps, ProjectLinksEnum} from '../../models/project.model.ts';
 import {Block} from '../../utils/Block.ts';
 import {inputValidationAndSubmittingHelper} from '../../helpers/inputValidationAndSubmiting.helper.ts';
-import {Button} from "../../components/Button";
+import {Button} from '../../components/Button';
 
 const signUpFieldList =
     [

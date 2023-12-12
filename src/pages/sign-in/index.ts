@@ -8,7 +8,7 @@ import {Logo} from '../../components/Logo';
 import {handleErrorAndSubmitting} from '../../helpers/handleError.helper.ts';
 import {regexLogin, regexPassword} from '../../helpers/regex.helper.ts';
 import {HTTPTransport, METHODS} from '../../utils/HttpTransport.ts';
-import {Button} from "../../components/Button";
+import {Button} from '../../components/Button';
 
 const signInFieldList =
     [
