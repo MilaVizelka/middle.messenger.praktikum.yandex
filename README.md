@@ -1,7 +1,10 @@
-деплой - [![Netlify Status](https://api.netlify.com/api/v1/badges/1798a916-f5c9-4624-9988-58cde9d5c5aa/deploy-status)](https://tangerine-faun-e3888b.netlify.app/)https://tangerine-faun-e3888b.netlify.app/
+деплой - https://6578a577c62e3a0826bc56cb--tangerine-faun-e3888b.netlify.app/
 ссылка на макет: https://www.figma.com/file/xEr1nOAGbkgDnlBelvWrKc/Chat-(my-design)?node-id=1%3A3&mode=dev
 
-Сверстаны страницы: чат(заглушка), sign-in, sign-up, settings, error, error 404
+Добавлена валидация на страницы, данные из инпутов собираются в объект, при нажатии на кнопку данные отправляются на сервер с помощью
+XMLHttpRequest
+
+в некоторых местах оставила тип any, поскольку не смогла подобрать соответствующий тип (в основном  Block, EventBus)
 
 Переход между страницами по ссылке
 
@@ -11,3 +14,4 @@
 - `npm run dev` — запуск версии для разработчика,
 - `npm run start` — сборка и запуск проекта,
 - `npm run build` — сборка стабильной версии.
+- `npm run lint` — запуск линтера.
