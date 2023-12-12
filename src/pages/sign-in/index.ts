@@ -8,7 +8,7 @@ import {Logo} from '../../components/Logo';
 import {handleErrorAndSubmitting} from '../../helpers/handleError.helper.ts';
 import {regexLogin, regexPassword} from '../../helpers/regex.helper.ts';
 import {HTTPTransport, METHODS} from '../../utils/HttpTransport.ts';
-import {Button} from '../../components/button';
+import {Button} from '../../components/Button';
 
 const signInFieldList =
     [
@@ -135,7 +135,7 @@ export class SignInPage extends Block {
                 
                 console.log(obj)
                 
-                const submitButton = document.querySelector('button');
+                const submitButton = document.querySelector('Button');
 
                 submitButton?.addEventListener('click', (e) => {
                     if(!isInputErr) {
