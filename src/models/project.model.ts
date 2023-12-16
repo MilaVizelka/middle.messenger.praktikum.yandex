@@ -1,10 +1,12 @@
 export type InputProps = {
-    placeholder?: string;
-    type?: string;
-    name?: string;
-    minLength?: number;
-    pattern?: string;
-    title?: string;
+    data: {
+        placeholder?: string;
+        type?: string;
+        name?: string;
+        minLength?: number;
+        pattern?: string;
+        title?: string;
+    }
 }
 
 export type SignInInputValuesType = {

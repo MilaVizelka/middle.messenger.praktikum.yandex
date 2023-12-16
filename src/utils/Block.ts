@@ -47,9 +47,9 @@ export class Block<P extends  Record<string, any> = any> {
     }
     
     _getChildrenAndProps(childrenAndProps: P): {props: P, children: Record<string, Block>} {
+        
         const props: Record<string, unknown> = {};
         const children: Record<string, Block> ={}
-        
         Object.entries(childrenAndProps).forEach(([key, value]) => {
             if(value instanceof Block) {
                 children[key as string] = value
@@ -65,6 +65,13 @@ export class Block<P extends  Record<string, any> = any> {
         const  {events = {}} = this.props as P & {events: Record<string, () => void>};
         Object.keys(events).forEach((eventName => {
             this._element?.addEventListener(eventName, events[eventName])
+        }))
+    }
+    
+    _removeEvents() {
+        const  {events = {}} = this.props as P & {events: Record<string, () => void>};
+        Object.keys(events).forEach((eventName => {
+            this._element?.removeEventListener(eventName, events[eventName])
         }))
     }
     
@@ -87,8 +94,6 @@ export class Block<P extends  Record<string, any> = any> {
     }
     
     protected init() {}
-    
- 
     
     _componentDidMount() {
         this.componentDidMount();
@@ -128,6 +133,8 @@ export class Block<P extends  Record<string, any> = any> {
     private _render() {
         const fragment = this.render();
         
+        this._removeEvents();
+        
         this._element!.innerHTML = '';
         
         this._element!.append(fragment)
@@ -147,7 +154,7 @@ export class Block<P extends  Record<string, any> = any> {
         const temp =  document.createElement('template');
         
         temp.innerHTML = html
-        console.log(this.children)
+       
         
         Object.entries(this.children).forEach(([_, component]) => {
             
