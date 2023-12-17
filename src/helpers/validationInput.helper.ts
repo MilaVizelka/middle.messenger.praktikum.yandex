@@ -3,7 +3,7 @@ import {handleError} from "./handleError.helper.ts";
 import {requestHandler} from "./requestHandler.ts";
 let regex: RegExp;
 let isInputErr: boolean;
-let inputValues: Record<string, unknown> = {};
+const inputValues: Record<string, unknown> = {};
 export const validationHelper = (event: Event) => {
 
     const value = (event.target as HTMLInputElement).value;
