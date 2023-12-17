@@ -1,5 +1,5 @@
-деплой - https://657e538dff0bc21992aadd3a--tangerine-faun-e3888b.netlify.app
-ссылка на макет: https://www.figma.com/file/xEr1nOAGbkgDnlBelvWrKc/Chat-(my-design)?node-id=1%3A3&mode=dev
+- деплой - https://tangerine-faun-e3888b.netlify.app
+- ссылка на макет: https://www.figma.com/file/xEr1nOAGbkgDnlBelvWrKc/Chat-(my-design)?node-id=1%3A3&mode=dev
 
 Добавлена валидация на страницы, данные из инпутов собираются в объект, при нажатии на кнопку данные отправляются на сервер с помощью
 XMLHttpRequest
