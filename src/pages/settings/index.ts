@@ -3,43 +3,42 @@ import {Link} from '../../components/Link';
 import {Input} from '../../components/Input';
 import {InputProps, ProjectLinksEnum} from '../../models/project.model.ts';
 import {Block} from '../../utils/Block.ts';
-import {inputValidationAndSubmittingHelper} from '../../helpers/inputValidationAndSubmiting.helper.ts';
 import {Button} from '../../components/Button';
+import {Form} from "../../components/Form";
+import {Title} from "../../components/Title";
 
 const signUpFieldList =
-    [
-        {
-            placeholder: 'first name',
-            name: 'first_name',
-            type: 'text'
-        },
-        {
-            placeholder: 'second name',
-            name: 'second_name',
-            type: 'text'
-        },
-        {
-            placeholder: 'display name',
-            name: 'display_name',
-            type: 'text'
-        },
-        {
-            placeholder: 'login',
-            name: 'login',
-            type: 'text'
-        },
-        {
-            placeholder: 'email',
-            name: 'email',
-            type: 'email'
-        },
-        {
-            placeholder: 'phone',
-            name: 'phone',
-            type: 'phone'
-        },
-    
-    ] as InputProps
+    {
+        data: [
+            {
+                placeholder: 'first name',
+                name: 'first_name',
+            },
+            {
+                placeholder: 'second name',
+                name: 'second_name'
+            },
+            {
+                placeholder: 'display name',
+                name: 'display_name',
+            },
+            {
+                placeholder: 'login',
+                name: 'login',
+            },
+            {
+                placeholder: 'email',
+                name: 'email',
+                type: 'email'
+            },
+            {
+                placeholder: 'phone',
+                name: 'phone',
+                type: 'phone'
+            },
+        
+        ]
+    } as InputProps
 
 export class SettingsPage extends Block {
     
@@ -48,14 +47,20 @@ export class SettingsPage extends Block {
     }
     
     init() {
-        this.children.link = new Link({to: `${ProjectLinksEnum["sign-in"]}`, content: 'or Sign In'});
         this.children.logo = new Logo();
-        this.children.button = new Button({props: {text: 'Save', type: 'submit'}});
-        this.children.input = new Input(signUpFieldList);
+        this.children.title = new Title({title: 'Log In'});
+        this.children.link = new Link({to: `${ProjectLinksEnum["sign-up"]}`, content: 'or Sign Up'})
+        this.children.form = new Form({ data:
+                {
+                    input: new Input(signUpFieldList),
+                    button: new Button({props: {text: 'Enter', type: 'submit'}}),
+                    
+                }
+        });
     }
     
     render() {
-        const settingsPage =  this.compile(
+       return  this.compile(
             ` <div class="wrapper-settings-page">
              <header class="header">
                 {{{ logo }}}
@@ -66,21 +71,11 @@ export class SettingsPage extends Block {
                     <img src='/assets/empty-avatar.svg' alt="empty-avatar"/>
                     <span>avatar</span>
                  </div>
-                <form class="form" name="settings-form">
-                    {{{ input }}}
-                    <div>{{{ button }}}</div>
-                </form>
-                
-                {{{ link }}}
+                 {{{link}}}
+                 {{{form}}}
+                 {{{title}}}
             </div>
         </div>
     `, this.props)
-        
-        const inputValues = {login: '', password: '', first_name: '',
-            second_name: '', email: '', phone: ''};
-        
-        inputValidationAndSubmittingHelper(settingsPage, inputValues)
-        
-        return settingsPage
     }
 }

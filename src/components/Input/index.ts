@@ -15,7 +15,7 @@ export class Input extends Block {
        return  this.compile(`
             <div class="fields-list">
                 {{#each data}}
-                    <input class="input-styled {{className}}" type={{this.type}} name="{{this.name}}" {{#if this.value}} value={{this.value}}
+                    <input class="input-styled {{className}}" {{#if this.type}} type={{this.type}} {{/if}} name="{{this.name}}" {{#if this.value}} value={{this.value}}
                         {{/if}} {{#if placeholder}} placeholder="{{placeholder}}" {{/if}}
                         {{#if this.pattern}} pattern={{this.pattern}} {{/if}}
                         {{#if this.readonly}} readonly {{/if}}

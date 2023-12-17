@@ -5,40 +5,48 @@ import {Title} from '../../components/Title';
 import {InputProps, ProjectLinksEnum} from '../../models/project.model.ts';
 import {Block} from '../../utils/Block.ts';
 import {Input} from '../../components/Input';
-import {regexEmptyField} from '../../helpers/regex.helper.ts';
-import {Button} from '../../components/Button';
+import {Form} from "../../components/Form";
+import {Button} from "../../components/Button";
 
-const chatField = [
-    {
-        placeholder: 'Search for people'
-    }
-] as InputProps
+const chatsSearchField = {
+    data: [
+        {
+            placeholder: 'Search for people',
+            name: 'search'
+        }
+    ]
+} as InputProps
 
-const chatMessageField = [
-    {
-        placeholder: 'add message',
-        className: 'input-message'
-    }
-] as InputProps
+const chatMessageField = {
+    data: [
+        {
+            placeholder: 'add message',
+            className: 'input-message',
+            name: 'message'
+        }
+    ]
+} as InputProps
 
-const chatMessages = [
-    {
-        id: 1,
-        name: 'message',
-        value: 'test',
-        type: 'text',
-        readonly: true
-    },
-    {
-        id: 2,
-        name: 'message',
-        value: 'owner',
-        role: 'owner',
-        className: 'owner',
-        type: 'text',
-        readonly: true
-    }
-] as InputProps
+const chatMessages = {
+    data: [
+        {
+            id: 1,
+            name: 'chat-message',
+            value: 'test',
+            type: 'text',
+            readonly: true
+        },
+        {
+            id: 2,
+            name: 'chat-owner-message',
+            value: 'owner',
+            role: 'owner',
+            className: 'owner',
+            type: 'text',
+            readonly: true
+        }
+    ]
+} as InputProps
 
 export class ChatPage extends Block {
     
@@ -47,13 +55,7 @@ export class ChatPage extends Block {
     }
     
     init() {
-        this.children.button = new Button({
-            props: {
-                text: '<img class="settings-styled" src=\'/assets/send-icon.svg\' alt="settings"/>',
-                type: 'submit'
-            }
-        });
-        this.children.inputSearch = new Input(chatField);
+        this.children.inputSearch = new Input( chatsSearchField);
         this.children.inputSendMessage = new Input(chatMessageField);
         this.children.inputMessage = new Input(chatMessages);
         this.children.linkToAuth = new Link({to: `${ProjectLinksEnum.settings}`, content: '<img class="settings-styled" src=\'/assets/settings.svg\' alt="settings"/>'});
@@ -62,10 +64,18 @@ export class ChatPage extends Block {
         this.children.title = new Title({
             title: "Music chat"
         });
+        this.children.form = new Form({ data:
+                {
+                    input: new Input(chatMessageField),
+                    button: new Button({props: {text: '', type: 'submit'}}),
+                    title: new Title({title: ''}),
+                    link: new Link({to: ``, content: ''})
+                }
+        });
     }
     
     render() {
-        const chatsPage =  this.compile(`
+        return this.compile(`
             <div class="wrapper-chats-page">
                 <header class="header">
                     <div class="header-content">
@@ -96,39 +106,12 @@ export class ChatPage extends Block {
                                  {{{inputMessage}}}
                             </div>
                             <div class="block-submit">
-                                 {{{inputSendMessage}}}
-                                 <button class="button-styled" type="submit">
-                                    <img class="settings-styled" src=\'/assets/send-icon.svg\' alt="submit-action"/>
-                                 </button>
+                                 {{{form}}}
                             </div>
                          </form>
                      </div>
                 </div>
             <div>
         `, this.props)
-        
-        const inputValues = {message: '', id: '1'};
-        
-        let isInputErr = false;
-        
-        chatsPage.querySelectorAll('input').forEach((input) => {
-            input.addEventListener('blur', (event) => {
-                const value = (event.target as HTMLInputElement).value;
-                
-                isInputErr = !regexEmptyField.test(value);
-                
-                const form = document.querySelector('form');
-                
-                form?.addEventListener('submit', (e) => {
-                    isInputErr && e.preventDefault();
-                });
-                
-                const obj = Object.assign(inputValues, {message: value });
-                
-                console.log(obj)
-                
-            })
-        });
-        return chatsPage
     }
 }

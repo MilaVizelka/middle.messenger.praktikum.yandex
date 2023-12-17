@@ -1,5 +1,4 @@
-
-export const handleErrorAndSubmitting = (isErr: boolean) => {
+export const handleError = (isErr: boolean) => {
     const wrapperElement = document.querySelector('.fields-list');
     const errorElement =  document.createElement('span');
     const errorElements = document.querySelectorAll('.error');
@@ -18,4 +17,5 @@ export const handleErrorAndSubmitting = (isErr: boolean) => {
     !isErr && errorElements.forEach((element) => {
         element.remove();
     });
+   
 }
