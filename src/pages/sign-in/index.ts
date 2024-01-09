@@ -1,36 +1,86 @@
-import HandleBars from 'handlebars';
+import {InputProps,  MenuProps, ProjectLinksEnum} from '../../models/project.model.ts';
+import {Block} from '../../utils/Block.ts';
+import {Link} from '../../components/Link';
+import {Title} from '../../components/Title';
+import {Input} from '../../components/Input';
+import {Menu} from '../../components/Menu';
+import {Logo} from '../../components/Logo';
+import {Button} from '../../components/Button';
+import {Form} from "../../components/Form";
 
-import {Link} from "../../components/link"
-import {Title} from "../../components/title";
-import {Logo} from "../../components/logo";
-import {content} from "./tmpl/content.tmpl.ts";
-import {Input} from "../../components/input";
-import {Button} from "../../components/button";
-import {Menu} from "../../components/menu";
-import {InputProps, ProjectLinksEnum} from "../../models/project.model.ts";
+const menuItemsList = [
+    {
+        item: 'main page',
+        link:  ProjectLinksEnum.home
+    },
+    {
+        item: 'sign-up page',
+        link:  ProjectLinksEnum["sign-up"]
+    },
+    {
+        item: 'not-found page',
+        link: ProjectLinksEnum["not-found"]
+    },
+    {
+        item: 'server-error page',
+        link: ProjectLinksEnum["server-error"]
+    },
+    {
+        item: 'chats page',
+        link: ProjectLinksEnum.chats
+    },
+    {
+        item: 'settings page',
+        link: ProjectLinksEnum.settings
+    },
+
+] as MenuProps;
 
 const signInFieldList =
-    [
-        {
-            placeholder: 'login',
-            name: 'login',
-            type: 'text'
-        },
-        {
-            placeholder: 'password',
-            name: 'password',
-            type: 'password'
-        },
-    
-    ] as InputProps
+    {
+        data: [
+            {
+                placeholder: 'login',
+                name: 'login',
+                title: 'Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters',
+            },
+            {
+                placeholder: 'password',
+                name: 'password',
+                type: 'password',
+                title: 'Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters',
+            },
+        ]
+    } as InputProps;
 
-export const SignInPage = () => {
-    return HandleBars.compile(content)({
-        logo: Logo(),
-        menu: Menu(),
-        signUpPageLink: Link({to: `${ProjectLinksEnum["sign-up"]}`, content: 'or Sign Up'}),
-        title: Title({title: 'Log In'}),
-        input: Input(signInFieldList),
-        button: Button({text: 'Enter'})
-    });
+export class SignInPage extends Block {
+    
+    constructor() {
+        super('div', {});
+    }
+    
+    init() {
+        this.children.title = new Title({title: 'Log In'}), this.children.link = new Link({to: `${ProjectLinksEnum["sign-up"]}`, content: 'or Sign Up'})
+        this.children.menu = new Menu(menuItemsList);
+        this.children.logo = new Logo();
+        this.children.form = new Form({ data:
+                {
+                    input: new Input(signInFieldList),
+                    button: new Button({props: {text: 'Enter', type: 'submit'}}),
+                    
+                }
+        });
+       
+    }
+    
+     render():DocumentFragment  {
+        return this.compile(`<div class="wrapper-sign-in-page">
+                <header class="header"> {{{ logo }}} {{{menu}}} </header>
+                <div class="wrapper-content">
+                {{{title}}}
+                {{{form}}}
+                {{{link}}}
+                </div>
+           </div>`, this.props)
+    }
 }

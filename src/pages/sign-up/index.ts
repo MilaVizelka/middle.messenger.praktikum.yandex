@@ -1,53 +1,77 @@
-import HandleBars from "handlebars";
-import {content} from "./tmpl/content.tmpl.ts";
-import {Logo} from "../../components/logo";
-import {Link} from "../../components/link";
-import {Title} from "../../components/title";
-import {Input} from "../../components/input";
-import {Button} from "../../components/button";
-import {InputProps, ProjectLinksEnum} from "../../models/project.model.ts";
+import {Logo} from '../../components/Logo';
+import {Link} from '../../components/Link';
+import {Title} from '../../components/Title';
+import {Input} from '../../components/Input';
+import {Button} from '../../components/Button';
+import {InputProps, ProjectLinksEnum} from '../../models/project.model.ts';
+import {Block} from '../../utils/Block.ts';
+import {Form} from "../../components/Form";
 
 const signUpFieldList =
-    [
-        {
-            placeholder: "first name",
-            name: "first_name",
-            type: 'text'
-        },
-        {
-            placeholder: 'second name',
-            name: "second_name",
-            type: 'text'
-        },
-        {
-            placeholder: 'login',
-            name: "login",
-            type: 'text'
-        },
-        {
-            placeholder: 'email',
-            name: "email",
-            type: 'email'
-        },
-        {
-            placeholder: 'phone',
-            name: "phone",
-            type: 'phone'
-        },
-        {
-            placeholder: 'password(min.6 charact.)',
-            name: "password",
-            type: 'password'
-        },
+    {
+        data: [
+            {
+                placeholder: 'first name',
+                name: 'first_name',
+                type: 'text'
+            },
+            {
+                placeholder: 'second name',
+                name: "second_name",
+                type: 'text'
+            },
+            {
+                placeholder: 'login',
+                name: "login",
+                type: 'text'
+            },
+            {
+                placeholder: 'email',
+                name: "email",
+                type: 'email',
+            },
+            {
+                placeholder: 'phone',
+                name: "phone",
+                type: 'phone',
+                
+            },
+            {
+                placeholder: 'password',
+                name: "password",
+                type: 'password',
+            },
         
-    ] as InputProps
+        ]
+    } as InputProps
 
-export const SignUpPage = () => {
-   return HandleBars.compile(content)({
-      logo: Logo(),
-      signUpPageLink: Link({to: `${ProjectLinksEnum["sign-up"]}`, content: 'or Sign In'}),
-      title: Title({title: 'Let`s get started!'}),
-       input: Input(signUpFieldList),
-      button: Button({text: 'Create account'})
-   });
+export class SignUpPage extends Block {
+    
+    constructor() {
+        super('div', {});
+    }
+    init() {
+        this.children.title = new Title({title: 'Let`s get started!'});
+        this.children.logo = new Logo();
+        this.children.link = new Link({to: `${ProjectLinksEnum["sign-in"]}`, content: 'or Sign In'});
+        this.children.form = new Form({ data:
+                {
+                    input: new Input(signUpFieldList),
+                    button: new Button({props: {text: 'Enter', type: 'submit'}}),
+                    
+                }
+        });
+    }
+    
+    render() {
+        return this.compile(
+            `<div class="wrapper-sign-up-page">
+                <header class="header"> {{{ logo }}} {{{ menu }}} </header>
+                <div class="wrapper-content">
+                     {{{title}}}
+                     {{{form}}}
+                     {{{link}}}
+                </div>
+            </div>`, this.props)
+    }
 }
