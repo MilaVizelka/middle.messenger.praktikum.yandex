@@ -43,6 +43,19 @@ div
 li
   list-style-type: none
 
+nav
+  margin-top: 20px
+  display: flex
+  gap: $indent-x2
+
+  span
+    color: $text
+    font-size: 16px
+
+    &:hover
+      color: $primary
+      transition: color 0.5s ease
+
 .input-styled
   border: 1px solid $grey-transparent
   border-radius: $border-radius-x2
@@ -61,6 +74,7 @@ li
 
 .link-styled
   text-decoration: none
+  cursor: pointer
 
 .wrapper-sign-in-page,
 .wrapper-sign-up-page,
@@ -73,6 +87,9 @@ li
   align-items: center
   height: 100vh
   position: relative
+
+  form
+    margin-bottom: 20px
 
   .header
     width: $width
@@ -88,14 +105,6 @@ li
 
     .logo
       height: 30px
-
-    .menu-styled
-      display: flex
-      gap: $indent-x2
-
-      a
-       color: $black
-       cursor: pointer
 
   .wrapper-content
     width: 360px
@@ -113,6 +122,9 @@ li
 
     .link-styled
       color: $grey
+      &:hover
+        color: $primary
+        transition: color 0.5s ease
 
     .form
       margin-bottom: 20px

@@ -1,11 +1,12 @@
 import {Logo} from '../../components/Logo';
 import {Link} from '../../components/Link';
 import {Input} from '../../components/Input';
-import {InputProps, ProjectLinksEnum} from '../../models/project.model.ts';
+import {InputProps} from '../../models/project.model.ts';
 import {Block} from '../../utils/Block.ts';
 import {Button} from '../../components/Button';
 import {Form} from "../../components/Form";
 import {Title} from "../../components/Title";
+import Router from "../../utils/Router.ts";
 
 const signUpFieldList =
     {
@@ -48,8 +49,8 @@ export class SettingsPage extends Block {
     
     init() {
         this.children.logo = new Logo();
-        this.children.title = new Title({title: 'Log In'});
-        this.children.link = new Link({to: `${ProjectLinksEnum["sign-up"]}`, content: 'or Sign Up'})
+        this.children.title = new Title({title: 'Settings'});
+        this.children.link = new Link({to: '/messenger', content: 'or go Chats page', router: Router});
         this.children.form = new Form({ data:
                 {
                     input: new Input(signUpFieldList),
@@ -71,9 +72,9 @@ export class SettingsPage extends Block {
                     <img src='/assets/empty-avatar.svg' alt="empty-avatar"/>
                     <span>avatar</span>
                  </div>
-                 {{{link}}}
-                 {{{form}}}
                  {{{title}}}
+                 {{{form}}}
+                 {{{link}}}
             </div>
         </div>
     `, this.props)

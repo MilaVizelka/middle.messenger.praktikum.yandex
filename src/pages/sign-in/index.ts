@@ -7,15 +7,16 @@ import {Menu} from '../../components/Menu';
 import {Logo} from '../../components/Logo';
 import {Button} from '../../components/Button';
 import {Form} from "../../components/Form";
+import Router from "../../utils/Router.ts";
 
 const menuItemsList = [
     {
         item: 'main page',
-        link:  ProjectLinksEnum.home
+        link:  new Link({to: '/sign-up', content: 'or SignUp', router: Router})
     },
     {
         item: 'sign-up page',
-        link:  ProjectLinksEnum["sign-up"]
+        link:  new Link({to: '/sign-up', content: 'or SignUp', router: Router})
     },
     {
         item: 'not-found page',
@@ -60,7 +61,8 @@ export class SignInPage extends Block {
     }
     
     init() {
-        this.children.title = new Title({title: 'Log In'}), this.children.link = new Link({to: `${ProjectLinksEnum["sign-up"]}`, content: 'or Sign Up'})
+        this.children.title = new Title({title: 'Log In'});
+        this.children.link = new Link({to: '/sign-up', content: 'or SignUp', router: Router});
         this.children.menu = new Menu(menuItemsList);
         this.children.logo = new Logo();
         this.children.form = new Form({ data:

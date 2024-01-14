@@ -1,7 +1,7 @@
 import {Link} from '../../../components/Link';
 import {Title} from '../../../components/Title';
 import {Block} from '../../../utils/Block.ts';
-import {ProjectLinksEnum} from '../../../models/project.model.ts';
+import Router from "../../../utils/Router.ts";
 
 export class ServerErrorPage extends Block {
    
@@ -10,7 +10,7 @@ export class ServerErrorPage extends Block {
    }
    
    init() {
-      this.children.link = new Link({to: `${ProjectLinksEnum["chats"]}`, content: 'назад к чатам'});
+      this.children.link = new Link({to: '/messenger', content: 'назад к чатам', router: Router});
       this.children.title = new Title({title: 500});
    }
    
