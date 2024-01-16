@@ -1,6 +1,7 @@
 import {regexEmail, regexEmptyField, regexLogin, regexName, regexPassword, regexPhone} from "./regex.helper.ts";
 import {handleError} from "./handleError.helper.ts";
 import {requestHandler} from "./requestHandler.ts";
+
 let regex: RegExp;
 let isInputErr: boolean;
 const inputValues: Record<string, unknown> = {};

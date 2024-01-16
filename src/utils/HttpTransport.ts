@@ -1,62 +1,88 @@
-import {ApiOptionsType} from '../models/project.model.ts';
-
-export const METHODS = {
-    GET: 'GET',
-    POST: 'POST',
-    PUT: 'PUT',
-    DELETE:'DELETE'
-};
-
-function queryStringify(data: string) {
-    return `?${Object.entries(data).map(([key, val]) => `${key}=${val}`).join('&')}`;
+export enum Method {
+    Get = 'Get',
+    Post = 'Post',
+    Put = 'Put',
+    Patch = 'Patch',
+    Delete = 'Delete'
 }
 
-export class HTTPTransport {
-    get(url: string, options: ApiOptionsType) {
-        return this.request(url, {...options, method: METHODS.GET})
-    }
-    post(url: string, options: ApiOptionsType) {
-        return this.request(url, {...options, method: METHODS.POST})
-    }
-    delete(url: string, options: ApiOptionsType) {
-        return this.request(url, {...options, method: METHODS.DELETE})
-    }
-    put(url: string, options: ApiOptionsType) {
-        return this.request(url, {...options, method: METHODS.PUT})
+type Options = {
+    method: Method;
+    data?: any;
+};
+
+export default class HTTPTransport {
+    static API_URL = 'https://ya-praktikum.tech/api/v2';
+    protected endpoint: string;
+    
+    constructor(endpoint: string) {
+        this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
     }
     
-    request = (url: string, options: ApiOptionsType) => {
-        const {method, data, headers={}, timeout} = options;
+    public get<Response>(path = '/'): Promise<Response> {
+        return this.request<Response>(this.endpoint + path);
+    }
+    
+    public post<Response = void>(path: string, data?: unknown): Promise<Response> {
+        return this.request<Response>(this.endpoint + path, {
+            method: Method.Post,
+            data,
+        });
+    }
+    
+    public put<Response = void>(path: string, data: unknown): Promise<Response> {
+        return this.request<Response>(this.endpoint + path, {
+            method: Method.Put,
+            data,
+        });
+    }
+    
+    public patch<Response = void>(path: string, data: unknown): Promise<Response> {
+        return this.request<Response>(this.endpoint + path, {
+            method: Method.Patch,
+            data,
+        });
+    }
+    
+    public delete<Response>(path: string, data?: unknown): Promise<Response> {
+        return this.request<Response>(this.endpoint + path, {
+            method: Method.Delete,
+            data
+        });
+    }
+    
+    private request<Response>(url: string, options: Options = {method: Method.Get}): Promise<Response> {
+        const {method, data} = options;
         
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
+            xhr.open(method, url);
             
-            if (method === METHODS.GET) {
-                xhr.open(method, `${url}/${queryStringify(data)}`);
-            } else xhr.open(method, url);
+            xhr.onreadystatechange = (e) => {
+                console.log(e)
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status < 400) {
+                        resolve(xhr.response);
+                    } else {
+                        reject(xhr.response);
+                    }
+                }
+            };
             
-            Object.keys(headers).forEach(key => {
-                return xhr.setRequestHeader(key, headers[key]);
-            });
+            xhr.onabort = () => reject({reason: 'abort'});
+            xhr.onerror = () => reject({reason: 'network error'});
+            xhr.ontimeout = () => reject({reason: 'timeout'});
             
-            xhr.timeout = timeout | 5000;
+            xhr.setRequestHeader('Content-Type', 'application/json');
             
-            console.log(data)
+            xhr.withCredentials = true;
+            xhr.responseType = 'json';
             
-            if (method === METHODS.GET || !data) {
+            if (method === Method.Get || !data) {
                 xhr.send();
             } else {
                 xhr.send(JSON.stringify(data));
             }
-            
-            xhr.onload = function() {
-                resolve(xhr);
-            };
-            
-            xhr.onabort = reject;
-            xhr.onerror = reject;
-            xhr.ontimeout = reject;
-            
-        }).catch(error => console.log(error))
-    };
+        });
+    }
 }
