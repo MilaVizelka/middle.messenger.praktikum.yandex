@@ -1,6 +1,5 @@
 import {regexEmail, regexEmptyField, regexLogin, regexName, regexPassword, regexPhone} from "./regex.helper.ts";
 import {handleError} from "./handleError.helper.ts";
-import {requestHandler} from "./requestHandler.ts";
 
 let regex: RegExp;
 let isInputErr: boolean;
@@ -40,7 +39,7 @@ export const validationHelper = (event: Event) => {
     
     console.log(obj)
     
-    obj !== null && event.type === 'submit' && requestHandler(obj)
+    // obj !== null && event.type === 'submit' && requestHandler(obj)
 
     
     

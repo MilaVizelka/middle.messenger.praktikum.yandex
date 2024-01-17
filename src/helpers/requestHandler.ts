@@ -1,10 +1,11 @@
-import {HTTPTransport, METHODS} from "../utils/HttpTransport.ts";
+import HTTPTransport from "../utils/HttpTransport.ts";
+
 
 export const requestHandler = (obj: Record<string, unknown> | null) => {
-    const transport = new HTTPTransport();
+    const transport = new HTTPTransport('auth/signin');
     const apiUrl = 'auth/signin';
     const options = {
-        method: METHODS.POST,
+        method: 'POST',
         data: obj,
         headers: { 'Content-Type': 'application/json' },
         timeout: 5000,

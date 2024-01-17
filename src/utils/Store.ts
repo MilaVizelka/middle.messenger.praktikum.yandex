@@ -21,11 +21,11 @@ export class Store extends EventBus {
     
     public set(keypath: string, data: unknown) {
         set(this.state, keypath, data);
-        
         this.emit(StoreEvents.Updated, this.getState());
     }
     
     public getState() {
+        console.log(this.state)
         return this.state;
     }
 }

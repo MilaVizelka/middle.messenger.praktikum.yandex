@@ -1,4 +1,4 @@
-import API, { AuthAPI,  SignupData } from '../api/AuthAPI';
+import API, { AuthAPI } from '../api/AuthAPI';
 import store from '../utils/Store';
 import router from '../utils/Router';
 import MessagesController from './MessagesController';
@@ -16,19 +16,19 @@ export class AuthController {
             
             await this.fetchUser();
             
-            router.go('/sign-up');
+            router.go('/messenger');
         } catch (e: any) {
             console.error(e);
         }
     }
     
-    async signup(data: SignupData) {
+    async signup(data: any) {
         try {
             await this.api.signup(data);
             
             await this.fetchUser();
             
-            router.go('/profile');
+            router.go('/messenger');
         } catch (e: any) {
             console.error(e.message);
         }
