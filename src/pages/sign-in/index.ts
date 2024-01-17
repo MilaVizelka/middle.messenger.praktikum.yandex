@@ -9,6 +9,8 @@ import {Button} from '../../components/Button';
 import {Form} from "../../components/Form";
 import Router from "../../utils/Router.ts";
 
+import {AuthController} from "../../controllers/AuthController.ts";
+
 const menuItemsList = [
     {
         item: 'main page',
@@ -68,11 +70,31 @@ export class SignInPage extends Block {
         this.children.form = new Form({ data:
                 {
                     input: new Input(signInFieldList),
-                    button: new Button({props: {text: 'Enter', type: 'submit'}}),
+                    button: new Button({props: {text: 'Enter', type: 'submit', events: {
+                                click: () => {
+                                    return this.onSubmit()
+                                }
+                            }}}),
                     
                 }
         });
        
+    }
+    
+    authController = new AuthController()
+    
+    onSubmit () {
+        const error = this.children.form.element?.getElementsByClassName('error')
+  
+        const values = Object
+            .values(this.children)
+            .filter(child => child instanceof Form)
+            .reduce((result, child) => {
+                const inputData = (child as Form).getInputData();
+                return { ...result, ...inputData };
+            }, {});
+        
+        return !error?.length && this.authController.signin(values);
     }
     
      render():DocumentFragment  {

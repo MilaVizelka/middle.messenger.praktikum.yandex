@@ -1,13 +1,8 @@
 import {Block} from '../../utils/Block.ts';
 import {ButtonProps} from '../../models/project.model.ts';
-import {submitButtonClick} from "../../helpers/submitButtonClick.helper.ts";
 export class Button extends Block {
-    constructor({props}: { props: ButtonProps }) {
-        super('div', {...props, events: {
-                click: (e: Event) => {
-                    submitButtonClick(e)
-                }
-            }});
+    constructor({props}: { props: ButtonProps & {events: any} }) {
+        super('div', {...props});
     }
     render(): DocumentFragment {
         return this.compile(`
