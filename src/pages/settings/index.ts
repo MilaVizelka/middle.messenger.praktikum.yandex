@@ -7,6 +7,7 @@ import {Button} from '../../components/Button';
 import {Form} from "../../components/Form";
 import {Title} from "../../components/Title";
 import Router from "../../utils/Router.ts";
+import {SettingsController} from "../../controllers/SettingsController.ts";
 
 const signUpFieldList =
     {
@@ -54,10 +55,27 @@ export class SettingsPage extends Block {
         this.children.form = new Form({ data:
                 {
                     input: new Input(signUpFieldList),
-                    button: new Button({props: {text: 'Enter', type: 'submit'}}),
+                    button: new Button({props: {text: 'Enter', type: 'submit', events: {
+                        click: () => this.onSubmitProfileData()
+                            }}}),
                     
                 }
         });
+    }
+    
+    settingsController = new SettingsController()
+    onSubmitProfileData () {
+        const error = this.children.form.element?.getElementsByClassName('error')
+        
+        const values = Object
+            .values(this.children)
+            .filter(child => child instanceof Form)
+            .reduce((result, child) => {
+                const inputData = (child as Form).getInputData();
+                return { ...result, ...inputData };
+            }, {});
+        
+        return !error?.length && this.settingsController.profile(values);
     }
     
     render() {

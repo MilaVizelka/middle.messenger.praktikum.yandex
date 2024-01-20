@@ -34,6 +34,18 @@ export class AuthController {
         }
     }
     
+    async user() {
+        try {
+            await this.api.user();
+            
+            await this.fetchUser();
+            
+            router.go('/messenger');
+        } catch (e: any) {
+            console.error(e.message);
+        }
+    }
+    
     async fetchUser() {
         const user = await this.api.read();
         

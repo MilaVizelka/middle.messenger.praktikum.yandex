@@ -8,6 +8,7 @@ import {Input} from '../../components/Input';
 import {Form} from "../../components/Form";
 import {Button} from "../../components/Button";
 import Router from "../../utils/Router.ts";
+import {AuthController} from "../../controllers/AuthController.ts";
 
 const chatsSearchField = {
     data: [
@@ -59,7 +60,12 @@ export class ChatPage extends Block {
         this.children.inputSearch = new Input( chatsSearchField);
         this.children.inputSendMessage = new Input(chatMessageField);
         this.children.inputMessage = new Input(chatMessages);
-        this.children.linkToAuth = new Link({to: `/`, content: '<img class="arrow-exit" src=\'/assets/exit.svg\' alt="exit"/>', router: Router});
+        this.children.buttonLogout = new Button({props: {text: '<img class="arrow-exit" src=\'/assets/exit.svg\' alt="exit"/>',  type: 'submit',  events: {
+                click: () => {
+                    return this.logout()
+                }
+            }}})
+        // this.children.linkToAuth = new Link({to: `/`, content: '<img class="arrow-exit" src=\'/assets/exit.svg\' alt="exit"/>', router: Router});
         this.children.linkToProjectSettings = new Link({to: `/settings`, content: '<img class="settings-styled" src=\'/assets/settings.svg\' alt="settings"/> ', router: Router});
         this.children.logo = new Logo();
         this.children.title = new Title({
@@ -75,6 +81,11 @@ export class ChatPage extends Block {
         });
     }
     
+    authController = new AuthController()
+    logout () {
+        return this.authController.logout();
+    }
+    
     render() {
         return this.compile(`
             <div class="wrapper-chats-page">
@@ -86,7 +97,7 @@ export class ChatPage extends Block {
                        <img src='/assets/small-avatar.svg' alt="small-avatar"/>
                        {{{linkToProjectSettings}}}
                     </div>
-                    {{{linkToAuth}}}
+                    {{{buttonLogout}}}
                 </header>
                 
                 <div class="wrapper-chats">
