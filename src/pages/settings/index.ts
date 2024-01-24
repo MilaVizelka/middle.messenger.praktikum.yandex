@@ -8,6 +8,7 @@ import {Form} from "../../components/Form";
 import {Title} from "../../components/Title";
 import Router from "../../utils/Router.ts";
 import {SettingsController} from "../../controllers/SettingsController.ts";
+import store from "../../utils/Store.ts";
 
 const signUpFieldList =
     {
@@ -49,12 +50,20 @@ export class SettingsPage extends Block {
     }
     
     init() {
+        const inputValues: any = [];
+        
+        if (store.getState().user) {
+            Object.entries(store.getState().user).forEach(([key, value]) => {
+                inputValues.push({ name: key, value });
+            });
+        }
+        
         this.children.logo = new Logo();
         this.children.title = new Title({title: 'Settings'});
         this.children.link = new Link({to: '/messenger', content: 'or go Chats page', router: Router});
         this.children.form = new Form({ data:
                 {
-                    input: new Input(signUpFieldList),
+                    input: new Input({data: inputValues || signUpFieldList}),
                     button: new Button({props: {text: 'Enter', type: 'submit', events: {
                         click: () => this.onSubmitProfileData()
                             }}}),

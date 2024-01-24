@@ -25,7 +25,7 @@ export class SettingsAPI extends BaseAPI {
     }
     
     read(): Promise<User> {
-        return this.http.get('/user');
+        return this.http.get('/1349954');
     }
     
     create = undefined;
