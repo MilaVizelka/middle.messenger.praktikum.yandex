@@ -7,6 +7,7 @@ import {Form} from "../../components/Form";
 import {Title} from "../../components/Title";
 import Router from "../../utils/Router.ts";
 import {SettingsController} from "../../controllers/SettingsController.ts";
+import {SettingsData} from "../../api/SettingsAPI.ts";
 
 export class SettingsPage extends Block {
     
@@ -56,7 +57,7 @@ export class SettingsPage extends Block {
             }, {});
 
         
-        return this.settingsController.profile(values, getId.id);
+        return this.settingsController.profile(values as SettingsData, getId.id);
     }
     
     render() {

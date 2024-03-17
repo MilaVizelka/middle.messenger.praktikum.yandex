@@ -9,6 +9,7 @@ import {Form} from "../../components/Form";
 import {Button} from "../../components/Button";
 import Router from "../../utils/Router.ts";
 import {AuthController} from "../../controllers/AuthController.ts";
+import {ChatsAPI} from "../../api/ChatsAPI.ts";
 
 const chatsSearchField = {
     data: [
@@ -57,6 +58,7 @@ export class ChatPage extends Block {
     }
     
     init() {
+        const chatsApi = new ChatsAPI();
         this.children.inputSearch = new Input( chatsSearchField);
         this.children.inputSendMessage = new Input(chatMessageField);
         this.children.inputMessage = new Input(chatMessages);
@@ -71,6 +73,11 @@ export class ChatPage extends Block {
         this.children.title = new Title({
             title: "Music chat"
         });
+        this.children.buttonCreateChat = new Button({props: {text: 'Создать чат', type: 'submit', events: {
+                    click: () => {
+                        return chatsApi.create('Music')
+                    }
+                }}});
         this.children.form = new Form({ data:
                 {
                     input: new Input(chatMessageField),
@@ -79,14 +86,18 @@ export class ChatPage extends Block {
                     link: new Link({to: ``, content: '', router: Router})
                 }
         });
+        
+        chatsApi.read().then((chats)=> localStorage.setItem('chats', JSON.stringify(chats)))
     }
     
     authController = new AuthController()
     logout () {
         return this.authController.logout();
     }
+    chats = localStorage.getItem('chats');
     
     render() {
+        console.log(this.chats)
         return this.compile(`
             <div class="wrapper-chats-page">
                 <header class="header">
@@ -99,31 +110,33 @@ export class ChatPage extends Block {
                     </div>
                     {{{buttonLogout}}}
                 </header>
-                
                 <div class="wrapper-chats">
-                     <aside class="preview-chats">
-                            {{{inputSearch}}}
-                            <div class="preview-message-block">Just Matt</div>
-                            <div class="preview-message-block active">Joe The Runner</div>
-                            
-                     </aside>
-                     <div class="main-chats">
-                         <div class="main-chats-header">
-                             <img src='/assets/user.svg' alt="user"/>
-                             <span>Joe The Runner</span>
-                         </div>
-                         <div class="date">10 december</div>
-                         <form>
-                             <div class="block-message">
-                                 {{{inputMessage}}}
+                    <aside class="preview-chats">
+                        {{{inputSearch}}}
+                        <div class="preview-message-block active">Joe The Runner</div>
+                    </aside>
+                    {{#if chats}}
+                        <div class="main-chats">
+                            <div class="main-chats-header">
+                                <img src='/assets/user.svg' alt="user"/>
+                                <span>Joe The Runner</span>
                             </div>
-                            <div class="block-submit">
-                                 {{{form}}}
-                            </div>
-                         </form>
-                     </div>
+                            <div class="date">10 december</div>
+                            <form>
+                                <div class="block-message">
+                                    {{{inputMessage}}}
+                                </div>
+                                <div class="block-submit">
+                                    {{{form}}}
+                                </div>
+                            </form>
+                        </div>
+                    {{else}}
+                        <div>Пока нет ни одного чата</div>
+                        {{{buttonCreateChat}}}
+                    {{/if}}
                 </div>
-            <div>
+            </div>
         `, this.props)
     }
 }
