@@ -24,7 +24,6 @@ export class Form extends Block {
         input?.forEach((child) => {
             inputValues[child.name] = child.value;
         });
-       
         
         return inputValues;
     }

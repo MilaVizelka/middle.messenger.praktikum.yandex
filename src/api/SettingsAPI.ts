@@ -24,8 +24,8 @@ export class SettingsAPI extends BaseAPI {
         return this.http.post('/avatar', data);
     }
     
-    read(): Promise<User> {
-        return this.http.get('/1349954');
+    read(id?: string): Promise<User> {
+        return this.http.get(id);
     }
     
     create = undefined;

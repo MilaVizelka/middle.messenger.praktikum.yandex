@@ -1,47 +1,12 @@
 import {Logo} from '../../components/Logo';
 import {Link} from '../../components/Link';
 import {Input} from '../../components/Input';
-import {InputProps} from '../../models/project.model.ts';
 import {Block} from '../../utils/Block.ts';
 import {Button} from '../../components/Button';
 import {Form} from "../../components/Form";
 import {Title} from "../../components/Title";
 import Router from "../../utils/Router.ts";
 import {SettingsController} from "../../controllers/SettingsController.ts";
-import store from "../../utils/Store.ts";
-
-const signUpFieldList =
-    {
-        data: [
-            {
-                placeholder: 'first name',
-                name: 'first_name',
-            },
-            {
-                placeholder: 'second name',
-                name: 'second_name'
-            },
-            {
-                placeholder: 'display name',
-                name: 'display_name',
-            },
-            {
-                placeholder: 'login',
-                name: 'login',
-            },
-            {
-                placeholder: 'email',
-                name: 'email',
-                type: 'email'
-            },
-            {
-                placeholder: 'phone',
-                name: 'phone',
-                type: 'phone'
-            },
-        
-        ]
-    } as InputProps
 
 export class SettingsPage extends Block {
     
@@ -52,9 +17,13 @@ export class SettingsPage extends Block {
     init() {
         const inputValues: any = [];
         
-        if (store.getState().user) {
-            Object.entries(store.getState().user).forEach(([key, value]) => {
-                inputValues.push({ name: key, value });
+        const user = localStorage.getItem('user');
+        
+        if (user) {
+            Object.entries(JSON.parse(user)).forEach(([key, value]) => {
+                if (key !== 'avatar') {
+                    inputValues.push({ name: key, value, key: key });
+                }
             });
         }
         
@@ -63,28 +32,31 @@ export class SettingsPage extends Block {
         this.children.link = new Link({to: '/messenger', content: 'or go Chats page', router: Router});
         this.children.form = new Form({ data:
                 {
-                    input: new Input({data: inputValues || signUpFieldList}),
+                    input: new Input({data: inputValues}),
                     button: new Button({props: {text: 'Enter', type: 'submit', events: {
                         click: () => this.onSubmitProfileData()
                             }}}),
-                    
                 }
         });
     }
     
     settingsController = new SettingsController()
     onSubmitProfileData () {
-        const error = this.children.form.element?.getElementsByClassName('error')
-        
-        const values = Object
-            .values(this.children)
+        // @ts-ignore
+        const getId = JSON.parse(localStorage.getItem('user'));
+        const values = Object.values(this.children)
             .filter(child => child instanceof Form)
             .reduce((result, child) => {
-                const inputData = (child as Form).getInputData();
-                return { ...result, ...inputData };
+                if (child instanceof Form) {
+                    const inputData = child.getInputData();
+                    const { avatar, id,  ...filteredData } = inputData;
+                    return { ...result, ...filteredData };
+                }
+                return result;
             }, {});
+
         
-        return !error?.length && this.settingsController.profile(values);
+        return this.settingsController.profile(values, getId.id);
     }
     
     render() {

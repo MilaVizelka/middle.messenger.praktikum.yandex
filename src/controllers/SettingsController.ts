@@ -1,6 +1,6 @@
 
 import store from '../utils/Store';
-import API, { SettingsAPI } from "../api/SettingsAPI.ts";
+import API, {SettingsAPI, SettingsData} from "../api/SettingsAPI.ts";
 
 export class SettingsController {
     private readonly api: SettingsAPI;
@@ -9,11 +9,11 @@ export class SettingsController {
         this.api = API;
     }
     
-    async profile(data: any) {
+    async profile(data: SettingsData, id: string) {
         try {
             await this.api.profile(data);
             
-            await this.fetchUser();
+            await this.fetchUser(id);
             
             
         } catch (e: any) {
@@ -21,21 +21,23 @@ export class SettingsController {
         }
     }
     
-    async avatar(data: any) {
+    async avatar(data: any, id: string) {
         try {
             await this.api.avatar(data);
             
-            await this.fetchUser();
+            await this.fetchUser(id);
             
         } catch (e: any) {
             console.error(e.message);
         }
     }
     
-    async fetchUser() {
-        const user = await this.api.read();
+    async fetchUser(id: string) {
+        const user = await this.api.read(`/${id}`);
         
         store.set('user', user);
+        localStorage.setItem('user', JSON.stringify(user))
+        
     }
     
 
