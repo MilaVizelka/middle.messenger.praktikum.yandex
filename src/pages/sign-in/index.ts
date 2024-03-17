@@ -75,17 +75,13 @@ export class SignInPage extends Block {
                                     return this.onSubmit()
                                 }
                             }}}),
-                    
                 }
         });
-       
     }
     
     authController = new AuthController()
     
     onSubmit () {
-        const error = this.children.form.element?.getElementsByClassName('error')
-  
         const values = Object
             .values(this.children)
             .filter(child => child instanceof Form)
@@ -93,18 +89,18 @@ export class SignInPage extends Block {
                 const inputData = (child as Form).getInputData();
                 return { ...result, ...inputData };
             }, {});
-        
-        return !error?.length && this.authController.signin(values);
+        return this.authController.signin(values);
     }
     
-     render():DocumentFragment  {
-        return this.compile(`<div class="wrapper-sign-in-page">
-                <header class="header"> {{{ logo }}} {{{menu}}} </header>
-                <div class="wrapper-content">
-                {{{title}}}
-                {{{form}}}
-                {{{link}}}
-                </div>
-           </div>`, this.props)
+    render(): DocumentFragment {
+        return this.compile(`
+        <div class="wrapper-sign-in-page">
+            <header class="header"> {{{ logo }}} {{{ menu }}} </header>
+            <div class="wrapper-content">
+                {{{ title }}}
+                {{{ form }}}
+                {{{ link }}}
+            </div>
+        </div>`, this.props);
     }
 }

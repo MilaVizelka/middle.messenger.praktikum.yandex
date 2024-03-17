@@ -28,6 +28,10 @@ export type MenuProps = {
     label?: string;
 }
 
+export type NotificationProps = {
+    message?: string
+}
+
 export type ButtonProps = {
     text: string;
     type: string;

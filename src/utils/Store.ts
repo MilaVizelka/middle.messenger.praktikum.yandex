@@ -14,6 +14,8 @@ interface State {
     chats: ChatInfo[];
     messages: Record<number, Message[]>;
     selectedChat?: number;
+    responseAuthError?: string;
+    validateMessage?: string
 }
 
 export class Store extends EventBus {
