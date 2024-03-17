@@ -1,13 +1,13 @@
 import {regexEmail, regexEmptyField, regexLogin, regexName, regexPassword, regexPhone} from "./regex.helper.ts";
 import {handleError} from "./handleError.helper.ts";
-import {requestHandler} from "./requestHandler.ts";
+
 let regex: RegExp;
 let isInputErr: boolean;
-const inputValues: Record<string, unknown> = {};
-export const validationHelper = (event: Event) => {
 
-    const value = (event.target as HTMLInputElement).value;
-    const key = (event.target as HTMLInputElement).name;
+export const validationHelper = (event?: Event) => {
+
+    const value = (event?.target as HTMLInputElement).value;
+    const key = (event?.target as HTMLInputElement).name;
     
     switch (key) {
         case 'login':
@@ -32,16 +32,5 @@ export const validationHelper = (event: Event) => {
     
     isInputErr = !regex.test(value);
     
-    
-    const obj = !isInputErr  ? Object.assign(inputValues, {[key]: value}) : null;
-    console.log(obj)
     handleError(isInputErr);
-    
-    console.log(obj)
-    
-    obj !== null && event.type === 'submit' && requestHandler(obj)
-
-    
-    
-    
 }

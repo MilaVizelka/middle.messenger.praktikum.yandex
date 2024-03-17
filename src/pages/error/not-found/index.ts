@@ -1,6 +1,6 @@
 import {Link} from '../../../components/Link';
 import {Block} from '../../../utils/Block.ts';
-import {ProjectLinksEnum} from '../../../models/project.model.ts';
+import Router from "../../../utils/Router.ts";
 
 export class NotFoundPage extends Block {
    
@@ -9,7 +9,7 @@ export class NotFoundPage extends Block {
    }
    
    init() {
-      this.children.link = new Link({to: `${ProjectLinksEnum["chats"]}`, content: 'назад к чатам'});
+      this.children.link = new Link({to: '/messenger', content: 'назад к чатам', router: Router});
    }
    
    render() {

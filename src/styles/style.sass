@@ -3,6 +3,10 @@ $height: 100%
 $regular: 14px
 $weight-regular: 400
 $indent-x2: 8px
+$indent-x3: 12px
+$indent-x5: 20px
+$indent-x10: 40px
+
 $border-radius-x2: 8px
 
 
@@ -43,15 +47,28 @@ div
 li
   list-style-type: none
 
+nav
+  margin-top: $indent-x3
+  display: flex
+  gap: $indent-x2
+
+  span
+    color: $text
+    font-size: 16px
+
+    &:hover
+      color: $primary
+      transition: color 0.5s ease
+
 .input-styled
   border: 1px solid $grey-transparent
   border-radius: $border-radius-x2
-  padding: 20px
+  padding: $indent-x5
 
 .button-styled
   border: none
   border-radius: $border-radius-x2
-  padding: 20px
+  padding: $indent-x3
   width: $width
   color: $white
   background-color: $primary
@@ -61,6 +78,7 @@ li
 
 .link-styled
   text-decoration: none
+  cursor: pointer
 
 .wrapper-sign-in-page,
 .wrapper-sign-up-page,
@@ -74,28 +92,23 @@ li
   height: 100vh
   position: relative
 
+  form
+    margin-bottom: $indent-x3
+
   .header
     width: $width
     display: flex
     justify-self: flex-start
     align-items: center
     height: 60px
-    padding: 0 40px
+    padding: 0 $indent-x10
     position: absolute
     top: 0
     left: 0
-    margin-top: 40px
+    margin-top: $indent-x10
 
     .logo
       height: 30px
-
-    .menu-styled
-      display: flex
-      gap: $indent-x2
-
-      a
-       color: $black
-       cursor: pointer
 
   .wrapper-content
     width: 360px
@@ -104,7 +117,7 @@ li
       display: flex
       flex-direction: column
       gap: $indent-x2
-      margin-bottom: 20px
+      margin-bottom: $indent-x3
 
     .title-styled
       color: $text
@@ -113,18 +126,33 @@ li
 
     .link-styled
       color: $grey
+      &:hover
+        color: $primary
+        transition: color 0.5s ease
 
     .form
-      margin-bottom: 20px
+      margin-bottom: $indent-x5
 
     .wrapper-avatar
       font-size: 16px
       color: $lightGrey
       font-weight: $weight-regular
-      margin-bottom: 20px
+      margin-bottom: $indent-x5
 
     .error
       color: red
+      
+.wrapper-settings-page
+  .wrapper-input
+    justify-content: center
+    display: flex
+    align-items: center
+    text-align: center
+    gap: $indent-x3
+
+    .settings-label
+      display: block
+      width: 100px
 
 .wrapper-not-found-page
   .wrapper-content
@@ -159,7 +187,7 @@ li
   .header
     height: 60px
     background-color: $white
-    padding: 0 20px
+    padding: 0 $indent-x5
     display: flex
     align-items: center
 
@@ -171,7 +199,10 @@ li
     .header-content-right
       display: flex
       align-items: center
-      gap: 20px
+      gap: $indent-x5
+
+      .button-styled
+        background: transparent
 
       *
         display: flex
@@ -182,7 +213,7 @@ li
       padding: 0
 
   .wrapper-chats
-    padding: 20px
+    padding: $indent-x5
     display: flex
     gap: $indent-x2
     height: 94%
@@ -213,7 +244,7 @@ li
 
       .input-styled
         padding: 6px $indent-x2
-        margin: 0 0 20px 15px
+        margin: 0 0 $indent-x5 15px
         width: 84%
 
     .main-chats
@@ -258,15 +289,15 @@ li
 
       .date
         align-self: center
-        margin-bottom: 20px
+        margin-bottom: $indent-x5
         border: 1px solid $grey-transparent
-        padding: 4px 12px
+        padding: 4px 1$indent-x3
         border-radius: 10px
         color: $grey
 
       .block-submit
         .input-message
-          padding: 12px $indent-x2
+          padding: $indent-x3 $indent-x2
           width: 97%
           position: relative
           background-color: transparent

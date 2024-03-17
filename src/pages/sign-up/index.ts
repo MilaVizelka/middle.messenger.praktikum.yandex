@@ -3,9 +3,11 @@ import {Link} from '../../components/Link';
 import {Title} from '../../components/Title';
 import {Input} from '../../components/Input';
 import {Button} from '../../components/Button';
-import {InputProps, ProjectLinksEnum} from '../../models/project.model.ts';
+import {InputProps} from '../../models/project.model.ts';
 import {Block} from '../../utils/Block.ts';
 import {Form} from "../../components/Form";
+import Router from "../../utils/Router.ts";
+import {AuthController} from "../../controllers/AuthController.ts";
 
 const signUpFieldList =
     {
@@ -53,14 +55,33 @@ export class SignUpPage extends Block {
     init() {
         this.children.title = new Title({title: 'Let`s get started!'});
         this.children.logo = new Logo();
-        this.children.link = new Link({to: `${ProjectLinksEnum["sign-in"]}`, content: 'or Sign In'});
+        this.children.link = new Link({to: '/', content: 'or SignIn', router: Router});
         this.children.form = new Form({ data:
                 {
                     input: new Input(signUpFieldList),
-                    button: new Button({props: {text: 'Enter', type: 'submit'}}),
+                    button: new Button({props: {text: 'Enter', type: 'submit', events: {
+                                click: () => {
+                                    return this.onSubmit()
+                                }
+                            }}}),
                     
                 }
         });
+    }
+    
+    authController = new AuthController()
+    onSubmit () {
+        const error = this.children.form.element?.getElementsByClassName('error')
+        
+        const values = Object
+            .values(this.children)
+            .filter(child => child instanceof Form)
+            .reduce((result, child) => {
+                const inputData = (child as Form).getInputData();
+                return { ...result, ...inputData };
+            }, {});
+        
+        return !error?.length && this.authController.signup(values);
     }
     
     render() {

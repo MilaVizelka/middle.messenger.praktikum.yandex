@@ -1,31 +1,34 @@
 import './styles/style.sass'
-import {NotFoundPage} from "./pages/error/not-found";
-import {ServerErrorPage} from "./pages/error/server-error";
-import {SignInPage} from "./pages/sign-in";
-import {SignUpPage} from "./pages/sign-up";
-import {ChatPage} from "./pages/chat";
-import {SettingsPage} from "./pages/settings";
+import { NotFoundPage } from "./pages/error/not-found";
+import { ServerErrorPage } from "./pages/error/server-error";
+import { SignInPage } from "./pages/sign-in";
+import { SignUpPage } from "./pages/sign-up";
+import { ChatPage } from "./pages/chat";
+import { SettingsPage } from "./pages/settings";
+import Router from "./utils/Router.ts";
 
-// если поставить typeof Block вторым аргументом, то получаю ошибку в 25 строке
-// пока не разобралась, чем заменить any
-const ROUTES: Record<string, any> = {
-    '/not-found': NotFoundPage,
-    '/server-error': ServerErrorPage,
-    '/sign-in':  SignInPage ,
-    '/sign-up': SignUpPage,
-    '/chats': ChatPage,
-    '/settings': SettingsPage,
-    '/': SignInPage,
+export enum Routes {
+    SignIn = '/',
+    SignUp = '/sign-up',
+    Settings = '/settings',
+    Chats = '/messenger',
+    NotFound = '/not-found',
+    ServerError = '/server-error',
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-    const root = document.getElementById('app');
+window.addEventListener('DOMContentLoaded', async () => {
+    const user = localStorage.getItem('user');
     
-    if (root) {
-        const Component = ROUTES[window.location.pathname] || NotFoundPage;
-        const component = new Component();
-        
-        root.textContent = ''; // Clear the root element before appending new content
-        root.appendChild(component.element!);
+    if (!user) {
+        await  Router.use(Routes.SignIn, SignInPage).start();
     }
-})
+        else await Router
+            .use(Routes.SignIn, SignInPage)
+            .use(Routes.SignUp, SignUpPage)
+            .use(Routes.Settings, SettingsPage)
+            .use(Routes.NotFound, NotFoundPage)
+            .use(Routes.ServerError, ServerErrorPage)
+            .use(Routes.Chats, ChatPage)
+            .start();
+    
+});
